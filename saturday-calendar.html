@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saturday Group Calendar - July to September 2026</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d9e2ec;
+      --paper: #f7f9fc;
+      --white: #ffffff;
+      --teal: #0f766e;
+      --blue: #2457c5;
+      --green: #15803d;
+      --amber: #b45309;
+      --rose: #be123c;
+      --violet: #6941c6;
+    }
+
+    body {
+      color: var(--ink);
+      background: var(--paper);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      padding: 2.25rem 0;
+    }
+
+    .section-band {
+      border-bottom: 1px solid var(--line);
+      padding: 2rem 0;
+    }
+
+    .label {
+      color: var(--teal);
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+
+    .cardlet {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 1rem;
+      height: 100%;
+    }
+
+    .critical {
+      border-top: 5px solid var(--rose);
+    }
+
+    .exam {
+      border-top: 5px solid var(--blue);
+    }
+
+    .admin {
+      border-top: 5px solid var(--amber);
+    }
+
+    .info {
+      border-top: 5px solid var(--teal);
+    }
+
+    .date-chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: .35rem .7rem;
+      background: #eef4ff;
+      color: #1849a9;
+      font-weight: 800;
+      font-size: .86rem;
+    }
+
+    .count-number {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: .95;
+      font-weight: 900;
+      color: var(--teal);
+      letter-spacing: 0;
+    }
+
+    .small-muted {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .month {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .month h3 {
+      margin: 0;
+      padding: .85rem 1rem;
+      background: #f1f5f9;
+      font-size: 1.1rem;
+      font-weight: 850;
+    }
+
+    .event-row {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: .8rem;
+      padding: .85rem 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .event-date {
+      font-weight: 850;
+      color: var(--teal);
+    }
+
+    .check-card label {
+      display: block;
+      padding: .65rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .check-card label:last-child {
+      border-bottom: 0;
+    }
+
+    .announcement {
+      border-left: 5px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      background: #ecfdf8;
+      padding: 1rem;
+    }
+
+    .table-clean {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .table-clean th,
+    .table-clean td {
+      padding: .8rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .table-clean th {
+      background: #f1f5f9;
+    }
+
+    .table-clean tr:last-child td {
+      border-bottom: 0;
+    }
+
+    @media (max-width: 960px) {
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      .topbar,
+      .no-print {
+        display: none;
+      }
+
+      body {
+        background: #ffffff;
+      }
+
+      .section-band,
+      .hero {
+        padding: 1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar py-2">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between gap-3">
+      <div>
+        <div class="label">Academic Calendar Dashboard</div>
+        <strong>Saturday Groups - July to September 2026</strong>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-outline-secondary btn-sm" href="index.html">Class Hub</a>
+        <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container-fluid px-4">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <div class="label">Grupo sabatino</div>
+          <h1 class="display-6 fw-bold mb-2">Fechas importantes del trimestre</h1>
+          <p class="lead mb-3">Panel para recordar inicio de docencia, fechas límite, examen parcial, examen final, diferidos, publicación de notas e inscripciones.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="date-chip">Inicio: sábado 11 de julio</span>
+            <span class="date-chip">Parcial: sábado 8 de agosto</span>
+            <span class="date-chip">Final: sábado 12 de septiembre</span>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="cardlet exam">
+            <h2 class="h5 fw-bold">Next Exam Countdown</h2>
+            <div class="count-number" id="nextExamDays">--</div>
+            <p class="mb-1 fw-bold" id="nextExamLabel">Calculating...</p>
+            <p class="small-muted mb-0">Basado en la fecha local del dispositivo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="label">Critical Dates</div>
+        <h2 class="h3 fw-bold mb-3">Fechas que deben recordar</h2>
+        <div class="row g-3">
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet info">
+              <span class="date-chip">Sat, Jul 11</span>
+              <h3 class="h5 fw-bold mt-3">Inicio de docencia</h3>
+              <p class="mb-0">Inicio oficial de clases para grupos sabatinos.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet admin">
+              <span class="date-chip">Tue, Jul 21</span>
+              <h3 class="h5 fw-bold mt-3">Retiro oficial</h3>
+              <p class="mb-0">Fecha límite de retiro oficial dejando el dinero en fondo para el próximo trimestre.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet admin">
+              <span class="date-chip">Tue, Jul 28</span>
+              <h3 class="h5 fw-bold mt-3">Segundo pago</h3>
+              <p class="mb-0">Fecha límite para completar el segundo pago y retiro sin pagar segunda cuota si el pago fue parcial.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet exam">
+              <span class="date-chip">Sat, Aug 8</span>
+              <h3 class="h5 fw-bold mt-3">Examen parcial</h3>
+              <p class="mb-0">Examen parcial para grupos sabatinos.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet critical">
+              <span class="date-chip">Fri, Aug 14</span>
+              <h3 class="h5 fw-bold mt-3">Reposición parcial</h3>
+              <p class="mb-0">Costo RD$500.00. Campus I y II: 2:30 p.m. a 5:30 p.m.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet info">
+              <span class="date-chip">Aug 24-30</span>
+              <h3 class="h5 fw-bold mt-3">Evaluación docente</h3>
+              <p class="mb-0">Período de Evaluación Docente.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet exam">
+              <span class="date-chip">Sat, Sep 12</span>
+              <h3 class="h5 fw-bold mt-3">Examen final</h3>
+              <p class="mb-0">Examen final para grupos sabatinos.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="cardlet critical">
+              <span class="date-chip">Wed, Sep 16</span>
+              <h3 class="h5 fw-bold mt-3">Final diferido</h3>
+              <p class="mb-0">Costo RD$500.00. Campus I y II: 2:30 p.m. a 5:30 p.m.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <div class="cardlet exam">
+              <h2 class="h5 fw-bold">Midterm Exam</h2>
+              <div class="count-number" id="midtermDays">--</div>
+              <p class="mb-1 fw-bold">Saturday, August 8, 2026</p>
+              <p class="small-muted mb-0">Examen parcial grupos sabatinos.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="cardlet exam">
+              <h2 class="h5 fw-bold">Final Exam</h2>
+              <div class="count-number" id="finalDays">--</div>
+              <p class="mb-1 fw-bold">Saturday, September 12, 2026</p>
+              <p class="small-muted mb-0">Examen final grupos sabatinos.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="cardlet critical">
+              <h2 class="h5 fw-bold">Make-up / Deferred</h2>
+              <p class="mb-2"><strong>Partial make-up:</strong> Friday, August 14</p>
+              <p class="mb-2"><strong>Deferred final:</strong> Wednesday, September 16</p>
+              <p class="mb-0"><strong>Cost:</strong> RD$500.00<br><strong>Time:</strong> 2:30 p.m. - 5:30 p.m., Campus I y II</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="label">Timeline</div>
+        <h2 class="h3 fw-bold mb-3">Trimestre julio-septiembre 2026</h2>
+        <div class="timeline">
+          <div class="month">
+            <h3>Julio</h3>
+            <div class="event-row"><div class="event-date">11</div><div><strong>Inicio sabatino</strong><br>Inicio de docencia grupos sabatinos.</div></div>
+            <div class="event-row"><div class="event-date">17</div><div><strong>Club de Conversación</strong><br>Inicio del club, todos los viernes hasta el 11 de septiembre.</div></div>
+            <div class="event-row"><div class="event-date">21</div><div><strong>Retiro oficial</strong><br>Fecha límite para retiro dejando dinero en fondo.</div></div>
+            <div class="event-row"><div class="event-date">28</div><div><strong>Segundo pago</strong><br>Fecha límite de pago y retiro relacionado con segunda cuota.</div></div>
+          </div>
+          <div class="month">
+            <h3>Agosto</h3>
+            <div class="event-row"><div class="event-date">8</div><div><strong>Examen parcial</strong><br>Grupos sabatinos.</div></div>
+            <div class="event-row"><div class="event-date">14</div><div><strong>Reposición parcial</strong><br>RD$500.00, 2:30 p.m. - 5:30 p.m.</div></div>
+            <div class="event-row"><div class="event-date">16</div><div><strong>Asueto</strong><br>Día de la Restauración.</div></div>
+            <div class="event-row"><div class="event-date">24-30</div><div><strong>Evaluación Docente</strong><br>Período de evaluación.</div></div>
+          </div>
+          <div class="month">
+            <h3>Septiembre</h3>
+            <div class="event-row"><div class="event-date">12</div><div><strong>Examen final</strong><br>Grupos sabatinos.</div></div>
+            <div class="event-row"><div class="event-date">16</div><div><strong>Final diferido</strong><br>RD$500.00, 2:30 p.m. - 5:30 p.m.</div></div>
+            <div class="event-row"><div class="event-date">18</div><div><strong>Publicación de notas</strong><br>Verificar nota y selección antes de pagar.</div></div>
+            <div class="event-row"><div class="event-date">18, 19, 21</div><div><strong>Inscripción activos</strong><br>Próximo trimestre.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <div class="cardlet check-card">
+              <div class="label">Student Checklist</div>
+              <h2 class="h4 fw-bold">I know...</h2>
+              <label><input class="form-check-input me-2" type="checkbox"> My Saturday classes start on July 11.</label>
+              <label><input class="form-check-input me-2" type="checkbox"> My midterm exam is on August 8.</label>
+              <label><input class="form-check-input me-2" type="checkbox"> My final exam is on September 12.</label>
+              <label><input class="form-check-input me-2" type="checkbox"> The withdrawal deadline is July 21.</label>
+              <label><input class="form-check-input me-2" type="checkbox"> I must check my grades online on September 18.</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="cardlet">
+              <div class="label">Teacher Announcement</div>
+              <h2 class="h4 fw-bold">Mensaje para leer en clase</h2>
+              <div class="announcement mb-3">
+                <strong>English:</strong><br>
+                Students, our Saturday classes officially start on Saturday, July 11. Your midterm exam is on Saturday, August 8, and your final exam is on Saturday, September 12. Please remember the withdrawal deadline on July 21, the second payment deadline on July 28, and check your grades online on September 18 before registering for the next term.
+              </div>
+              <div class="announcement">
+                <strong>Español:</strong><br>
+                Estudiantes, nuestras clases sabatinas inician oficialmente el sábado 11 de julio. El examen parcial será el sábado 8 de agosto y el examen final será el sábado 12 de septiembre. Recuerden la fecha límite de retiro del 21 de julio, la fecha límite del segundo pago del 28 de julio y verificar sus notas en línea el 18 de septiembre antes de inscribirse para el próximo trimestre.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="label">Reference</div>
+        <h2 class="h3 fw-bold mb-3">Inscripciones y servicios</h2>
+        <table class="table-clean">
+          <thead>
+            <tr>
+              <th>Evento</th>
+              <th>Fecha / Horario</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Publicación de notas</td>
+              <td>18 de septiembre de 2026</td>
+              <td>Verificar nota y selección en idiomas.unapec.edu.do antes de efectuar pago.</td>
+            </tr>
+            <tr>
+              <td>Inscripción estudiantes activos</td>
+              <td>Viernes 18, sábado 19 y lunes 21 de septiembre</td>
+              <td>Pago en línea disponible a través de idiomas.unapec.edu.do.</td>
+            </tr>
+            <tr>
+              <td>Inscripción reingreso</td>
+              <td>Martes 22 y miércoles 23 de septiembre</td>
+              <td>Ayuda por email: idiomas@adm.unapec.edu.do.</td>
+            </tr>
+            <tr>
+              <td>Inicio próximo trimestre</td>
+              <td>Jueves 1 de octubre de 2026</td>
+              <td>Trimestre octubre-diciembre 2026.</td>
+            </tr>
+            <tr>
+              <td>Club de Conversación de Inglés</td>
+              <td>Viernes, 17 de julio al 11 de septiembre</td>
+              <td>Adolescentes: 5:00 p.m. - 6:15 p.m. Adultos: 6:30 p.m. - 8:00 p.m.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const importantDates = [
+      { label: "Midterm Exam / Examen parcial", date: "2026-08-08T00:00:00" },
+      { label: "Final Exam / Examen final", date: "2026-09-12T00:00:00" }
+    ];
+
+    function startOfToday() {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    }
+
+    function daysUntil(dateText) {
+      const today = startOfToday();
+      const target = new Date(dateText);
+      return Math.ceil((target - today) / 86400000);
+    }
+
+    function renderCountdowns() {
+      const midtermDays = daysUntil("2026-08-08T00:00:00");
+      const finalDays = daysUntil("2026-09-12T00:00:00");
+      document.getElementById("midtermDays").textContent = midtermDays >= 0 ? midtermDays : "Done";
+      document.getElementById("finalDays").textContent = finalDays >= 0 ? finalDays : "Done";
+
+      const upcoming = importantDates
+        .map(item => ({ ...item, days: daysUntil(item.date) }))
+        .filter(item => item.days >= 0)
+        .sort((a, b) => a.days - b.days)[0];
+
+      if (upcoming) {
+        document.getElementById("nextExamDays").textContent = upcoming.days;
+        document.getElementById("nextExamLabel").textContent = `${upcoming.label} in ${upcoming.days} day(s)`;
+      } else {
+        document.getElementById("nextExamDays").textContent = "Done";
+        document.getElementById("nextExamLabel").textContent = "All listed exams have passed.";
+      }
+    }
+
+    renderCountdowns();
+  </script>
+</body>
+</html>

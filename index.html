@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Link It! 2e - Unit 1 Class Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #667085;
+      --line: #d9e2ec;
+      --paper: #fbfcfe;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --rose: #be123c;
+      --amber: #b45309;
+      --green: #15803d;
+    }
+
+    body {
+      color: var(--ink);
+      background: var(--paper);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      border-right: 1px solid var(--line);
+      background: #ffffff;
+      padding: 1rem;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    .top-band {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-band {
+      border-bottom: 1px solid var(--line);
+      padding: 2.5rem 0;
+    }
+
+    .nav-pills .nav-link {
+      color: var(--ink);
+      border-radius: 8px;
+      text-align: left;
+      padding: .55rem .75rem;
+    }
+
+    .nav-pills .nav-link.active {
+      background: var(--teal);
+      color: #ffffff;
+    }
+
+    .unit-label {
+      color: var(--teal);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+
+    .objective {
+      border-left: 4px solid var(--teal);
+      background: #eefcf9;
+      padding: .85rem 1rem;
+      border-radius: 0 8px 8px 0;
+      height: 100%;
+    }
+
+    .time-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 78px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .25rem .7rem;
+      font-weight: 700;
+      font-size: .85rem;
+      background: #ffffff;
+    }
+
+    .activity-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .activity-row:last-child {
+      border-bottom: 0;
+    }
+
+    .compact-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      height: 100%;
+    }
+
+    .word-button {
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: .42rem solid transparent;
+      border-bottom: .42rem solid transparent;
+      border-left: .65rem solid var(--teal);
+      margin-left: .12rem;
+    }
+
+    .quiz-option {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: .75rem;
+      cursor: pointer;
+      background: #ffffff;
+      transition: border-color .2s, background .2s;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--blue);
+    }
+
+    .quiz-option.correct {
+      border-color: var(--green);
+      background: #ecfdf3;
+    }
+
+    .quiz-option.wrong {
+      border-color: var(--rose);
+      background: #fff1f2;
+    }
+
+    .role-card {
+      border-left: 4px solid var(--blue);
+    }
+
+    .book-page {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .small-muted {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .answer-box {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .badge-skill {
+      border-radius: 999px;
+      padding: .35rem .65rem;
+      background: #eef4ff;
+      color: #1849a9;
+      font-weight: 700;
+      font-size: .78rem;
+    }
+
+    @media (max-width: 960px) {
+      .app-shell {
+        display: block;
+      }
+
+      aside {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .activity-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside>
+      <div class="unit-label mb-2">Unit 1</div>
+      <h1 class="h4 mb-1">Making Plans</h1>
+      <p class="small-muted mb-3">4-hour class hub based on the Unit 1 teacher guide.</p>
+      <nav class="nav nav-pills flex-column gap-1">
+        <a class="nav-link active" href="#overview">Overview</a>
+        <a class="nav-link" href="#lesson-plan">Lesson Plan</a>
+        <a class="nav-link" href="#vocabulary">Vocabulary</a>
+        <a class="nav-link" href="#grammar">Grammar Lab</a>
+        <a class="nav-link" href="#speaking">Speaking</a>
+        <a class="nav-link" href="#reading-writing">Reading & Writing</a>
+        <a class="nav-link" href="#assessment">Assessment</a>
+        <a class="nav-link" href="#book">Book Images</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="overview" class="top-band py-4">
+        <div class="container-fluid px-4">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+              <div class="unit-label">Lesson Plan + Web Content</div>
+              <h2 class="display-6 fw-bold mb-2">Unit 1: Making Plans</h2>
+              <p class="lead mb-3">Students practice inviting friends, making arrangements, describing weather, talking about habits and actions now, and using the present progressive for future plans.</p>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge-skill">Speaking</span>
+                <span class="badge-skill">Weather vocabulary</span>
+                <span class="badge-skill">Present progressive</span>
+                <span class="badge-skill">Travel blog</span>
+                <span class="badge-skill">Collaboration</span>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="compact-card p-3">
+                <h3 class="h6 fw-bold">Class Goal</h3>
+                <p class="mb-0">By the end of the session, students can make plans that work for everyone and describe future arrangements using natural spoken English.</p>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <a class="btn btn-dark btn-sm" href="class-agenda.html">Class agenda</a>
+                  <a class="btn btn-success btn-sm" href="unit1-teacher-slides.html">Open teacher slides</a>
+                  <a class="btn btn-primary btn-sm" href="unit1-student-practice.html">Open student practice</a>
+                  <a class="btn btn-warning btn-sm" href="saturday-calendar.html">Saturday calendar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band">
+        <div class="container-fluid px-4">
+          <div class="row g-3">
+            <div class="col-md-6 col-xl-3">
+              <div class="objective">
+                <strong>Invite and respond</strong>
+                <p class="mb-0 small-muted">Make invitations, accept, decline, and give reasons politely.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="objective">
+                <strong>Describe weather</strong>
+                <p class="mb-0 small-muted">Use weather words in short conversations and travel plans.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="objective">
+                <strong>Choose the tense</strong>
+                <p class="mb-0 small-muted">Contrast routines, actions now, and arranged future plans.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <div class="objective">
+                <strong>Write a blog</strong>
+                <p class="mb-0 small-muted">Plan and draft a short trip blog using useful adjectives.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="lesson-plan" class="section-band">
+        <div class="container-fluid px-4">
+          <div class="d-flex justify-content-between align-items-end gap-3 mb-3">
+            <div>
+              <div class="unit-label">Lesson Plan</div>
+              <h2 class="h3 fw-bold mb-0">4-Hour Sequence</h2>
+            </div>
+            <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">Print</button>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">0-15</span></div>
+            <div>
+              <h3 class="h5">Warm-up: Today and This Weekend</h3>
+              <p>Students answer two prompts: "What do you usually do after class?" and "What are you doing this weekend?" Use the answers to preview the difference between routines and future arrangements.</p>
+              <p class="small-muted mb-0">Spanish support: "usually" indica rutina; "this weekend" puede indicar un plan futuro ya organizado.</p>
+            </div>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">15-45</span></div>
+            <div>
+              <h3 class="h5">Vocabulary: Weather and Plans</h3>
+              <p>Teach and drill weather words. Students ask and answer: "What's the weather like today?" and "What's the weather like in...?" Then they connect weather to plans: "It's rainy, so I'm staying home."</p>
+            </div>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">45-85</span></div>
+            <div>
+              <h3 class="h5">Grammar Lab 1: Simple Present vs Present Progressive</h3>
+              <p>Contrast habits with actions happening now. Students sort sentences, correct errors, and create personal examples.</p>
+              <p class="small-muted mb-0">English: "I play basketball on Fridays" = habit. "I'm playing basketball now" = action in progress.</p>
+            </div>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">85-100</span></div>
+            <div>
+              <h3 class="h5">Break</h3>
+              <p class="mb-0">Optional pair challenge: write three true plans for this week.</p>
+            </div>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">100-145</span></div>
+            <div>
+              <h3 class="h5">Speaking: Invite a Friend</h3>
+              <p>Model useful chunks: "Are you doing anything on Saturday?", "Would you like to...?", "Sorry, I can't. I'm..." Students build short invitation dialogues and perform them.</p>
+            </div>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">145-180</span></div>
+            <div>
+              <h3 class="h5">Grammar Lab 2: Present Progressive for Future Plans</h3>
+              <p>Students describe arranged plans: "We're meeting outside school." "She's visiting her aunt." They complete a mini travel itinerary and ask follow-up questions.</p>
+            </div>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">180-220</span></div>
+            <div>
+              <h3 class="h5">Reading & Writing: Trip Blog</h3>
+              <p>Students identify the introduction, useful adjectives, and future-plan sentences in a model blog. Then they draft a short blog about a weekend away or cultural event.</p>
+            </div>
+          </div>
+
+          <div class="activity-row">
+            <div><span class="time-pill">220-240</span></div>
+            <div>
+              <h3 class="h5">Global Skills + Exit Ticket</h3>
+              <p>Groups plan an activity that works for everyone. Exit ticket: one weather word, one invitation phrase, one future arrangement, and one thing they can improve.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="vocabulary" class="section-band">
+        <div class="container-fluid px-4">
+          <div class="unit-label">Interactive Vocabulary</div>
+          <h2 class="h3 fw-bold">Weather Words</h2>
+          <p class="small-muted">Click the speaker buttons to hear the words. Audio uses the browser's speech engine.</p>
+          <div class="row g-3" id="vocabList"></div>
+          <div class="compact-card p-3 mt-3">
+            <label for="weatherSentence" class="form-label fw-bold">Practice sentence</label>
+            <div class="input-group">
+              <input id="weatherSentence" class="form-control" placeholder="Example: It is cloudy, so I am staying home.">
+              <button class="btn btn-success" onclick="saveWeatherSentence()">Save</button>
+            </div>
+            <div id="savedWeather" class="mt-3 small-muted"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="grammar" class="section-band">
+        <div class="container-fluid px-4">
+          <div class="unit-label">Grammar Lab</div>
+          <h2 class="h3 fw-bold">Choose the Best Form</h2>
+          <p class="small-muted">Simple present = habits and routines. Present progressive = actions now or future arrangements when the context is future.</p>
+          <div class="row g-3" id="quiz"></div>
+          <div class="mt-3 d-flex gap-2 align-items-center">
+            <button class="btn btn-primary" onclick="checkQuiz()">Check answers</button>
+            <button class="btn btn-outline-secondary" onclick="resetQuiz()">Reset</button>
+            <strong id="quizScore"></strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="speaking" class="section-band">
+        <div class="container-fluid px-4">
+          <div class="unit-label">Speaking Practice</div>
+          <h2 class="h3 fw-bold">Invitation Role-Plays</h2>
+          <div class="row g-3">
+            <div class="col-lg-4">
+              <div class="compact-card role-card p-3">
+                <h3 class="h5">Role-Play A</h3>
+                <p><strong>Student A:</strong> Invite your friend to go swimming on Saturday.</p>
+                <p><strong>Student B:</strong> You cannot go. You are visiting family.</p>
+                <button class="btn btn-outline-primary btn-sm" onclick="speak('Are you doing anything on Saturday? Would you like to go swimming?')">Listen</button>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="compact-card role-card p-3">
+                <h3 class="h5">Role-Play B</h3>
+                <p><strong>Student A:</strong> Invite your friend to watch a basketball game.</p>
+                <p><strong>Student B:</strong> Accept and arrange the time and place.</p>
+                <button class="btn btn-outline-primary btn-sm" onclick="speak('What are you doing on Friday? Would you like to watch a basketball game?')">Listen</button>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="compact-card role-card p-3">
+                <h3 class="h5">Role-Play C</h3>
+                <p><strong>Group:</strong> Plan a weekend activity everyone can enjoy.</p>
+                <p><strong>Goal:</strong> Ask for opinions, explain ideas, and agree on one plan.</p>
+                <button class="btn btn-outline-primary btn-sm" onclick="speak('What do you think? Can you explain your idea? Let us choose a plan that works for everyone.')">Listen</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="compact-card p-3 mt-3">
+            <h3 class="h5">Useful Phrases</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <ul class="mb-0">
+                  <li>Are you doing anything on Saturday?</li>
+                  <li>Would you like to go swimming?</li>
+                  <li>Sorry, I can't. I'm visiting my grandparents.</li>
+                  <li>That sounds great.</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul class="mb-0">
+                  <li>What a bummer! = Que pena.</li>
+                  <li>You know what? = Sabes que?</li>
+                  <li>Get out of here! = No puede ser.</li>
+                  <li>Let's meet outside school.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reading-writing" class="section-band">
+        <div class="container-fluid px-4">
+          <div class="unit-label">Reading & Writing</div>
+          <h2 class="h3 fw-bold">Trip Blog Builder</h2>
+          <div class="row g-3">
+            <div class="col-lg-5">
+              <div class="compact-card p-3">
+                <h3 class="h5">Blog Checklist</h3>
+                <div class="form-check"><input class="form-check-input" type="checkbox" id="c1"><label class="form-check-label" for="c1">Start with a friendly introduction.</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" id="c2"><label class="form-check-label" for="c2">Say where you are or where you are going.</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" id="c3"><label class="form-check-label" for="c3">Use adjectives: amazing, incredible, fantastic, awesome, wonderful, colorful, great.</label></div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" id="c4"><label class="form-check-label" for="c4">Use present progressive for future plans.</label></div>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="compact-card p-3">
+                <label for="blogDraft" class="form-label fw-bold">Draft your blog paragraph</label>
+                <textarea id="blogDraft" class="form-control answer-box" placeholder="Hi! This weekend, I am going to..."></textarea>
+                <div class="d-flex gap-2 mt-3">
+                  <button class="btn btn-success" onclick="analyzeBlog()">Check draft</button>
+                  <button class="btn btn-outline-secondary" onclick="clearBlog()">Clear</button>
+                </div>
+                <div id="blogFeedback" class="mt-3 small-muted"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="assessment" class="section-band">
+        <div class="container-fluid px-4">
+          <div class="unit-label">Quick Evaluation</div>
+          <h2 class="h3 fw-bold">Exit Ticket</h2>
+          <div class="row g-3">
+            <div class="col-md-6 col-xl-3"><input class="form-control" placeholder="One weather word"></div>
+            <div class="col-md-6 col-xl-3"><input class="form-control" placeholder="One invitation phrase"></div>
+            <div class="col-md-6 col-xl-3"><input class="form-control" placeholder="One future plan"></div>
+            <div class="col-md-6 col-xl-3"><input class="form-control" placeholder="One thing to improve"></div>
+          </div>
+          <div class="compact-card p-3 mt-3">
+            <h3 class="h5">Teacher Rubric</h3>
+            <div class="row g-3">
+              <div class="col-md-3"><strong>4</strong><br><span class="small-muted">Accurate, fluent, collaborative.</span></div>
+              <div class="col-md-3"><strong>3</strong><br><span class="small-muted">Mostly accurate; minor support needed.</span></div>
+              <div class="col-md-3"><strong>2</strong><br><span class="small-muted">Message clear but form is inconsistent.</span></div>
+              <div class="col-md-3"><strong>1</strong><br><span class="small-muted">Needs guided practice and sentence frames.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="book" class="section-band">
+        <div class="container-fluid px-4">
+          <div class="unit-label">Book Images</div>
+          <h2 class="h3 fw-bold">Unit 1 Reference Pages</h2>
+          <p class="small-muted">For classroom/private use only unless you have permission to publish the book pages publicly.</p>
+          <div class="row g-3" id="bookPages"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const vocab = [
+      ["sunny", "soleado"], ["cloudy", "nublado"], ["rainy", "lluvioso"],
+      ["windy", "ventoso"], ["snowy", "nevado"], ["stormy", "tormentoso"],
+      ["hot", "caluroso"], ["cold", "frio"], ["warm", "templado"],
+      ["foggy", "con neblina"], ["dry", "seco"], ["wet", "mojado"]
+    ];
+
+    const quizQuestions = [
+      {
+        text: "My brother usually ____ basketball after school.",
+        options: ["plays", "is playing", "is play"],
+        answer: "plays"
+      },
+      {
+        text: "Listen! The students ____ a dialogue.",
+        options: ["practice", "are practicing", "practices"],
+        answer: "are practicing"
+      },
+      {
+        text: "We ____ outside the school at 8:00 tomorrow.",
+        options: ["meet", "are meeting", "meets"],
+        answer: "are meeting"
+      },
+      {
+        text: "She ____ her aunt this weekend.",
+        options: ["visits", "is visiting", "visit"],
+        answer: "is visiting"
+      },
+      {
+        text: "I ____ English every Tuesday.",
+        options: ["am studying", "studies", "study"],
+        answer: "study"
+      }
+    ];
+
+    function speak(text) {
+      if (!("speechSynthesis" in window)) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      utterance.rate = 0.9;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function renderVocab() {
+      const list = document.getElementById("vocabList");
+      list.innerHTML = vocab.map(([word, translation]) => `
+        <div class="col-sm-6 col-xl-4">
+          <div class="compact-card p-3 d-flex align-items-center justify-content-between gap-3">
+            <div>
+              <strong>${word}</strong>
+              <div class="small-muted">${translation}</div>
+            </div>
+            <button class="word-button" aria-label="Listen to ${word}" onclick="speak('${word}')"><span class="play-icon"></span></button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function saveWeatherSentence() {
+      const input = document.getElementById("weatherSentence");
+      const saved = document.getElementById("savedWeather");
+      const text = input.value.trim();
+      saved.textContent = text ? `Saved: ${text}` : "Write a complete sentence first.";
+    }
+
+    function renderQuiz() {
+      const quiz = document.getElementById("quiz");
+      quiz.innerHTML = quizQuestions.map((q, index) => `
+        <div class="col-lg-6">
+          <div class="compact-card p-3" data-question="${index}">
+            <h3 class="h6">${index + 1}. ${q.text}</h3>
+            <div class="d-grid gap-2">
+              ${q.options.map(option => `
+                <div class="quiz-option" data-value="${option}" onclick="selectOption(this)">${option}</div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function selectOption(el) {
+      const parent = el.closest(".compact-card");
+      parent.querySelectorAll(".quiz-option").forEach(option => option.classList.remove("selected", "correct", "wrong"));
+      el.classList.add("selected");
+      el.style.borderColor = "var(--blue)";
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      document.querySelectorAll("[data-question]").forEach(card => {
+        const index = Number(card.dataset.question);
+        const selected = card.querySelector(".quiz-option.selected");
+        card.querySelectorAll(".quiz-option").forEach(option => {
+          option.classList.remove("correct", "wrong");
+          option.style.borderColor = "";
+        });
+        if (!selected) return;
+        if (selected.dataset.value === quizQuestions[index].answer) {
+          selected.classList.add("correct");
+          score += 1;
+        } else {
+          selected.classList.add("wrong");
+        }
+      });
+      document.getElementById("quizScore").textContent = `${score}/${quizQuestions.length}`;
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll(".quiz-option").forEach(option => {
+        option.classList.remove("selected", "correct", "wrong");
+        option.style.borderColor = "";
+      });
+      document.getElementById("quizScore").textContent = "";
+    }
+
+    function analyzeBlog() {
+      const text = document.getElementById("blogDraft").value.trim();
+      const feedback = [];
+      if (text.length < 40) feedback.push("Write a longer paragraph with more details.");
+      if (!/\b(am|is|are)\s+\w+ing\b/i.test(text)) feedback.push("Add present progressive for a future plan, for example: I am visiting...");
+      if (!/\b(amazing|incredible|fantastic|awesome|wonderful|colorful|great)\b/i.test(text)) feedback.push("Add at least one useful adjective.");
+      if (!feedback.length) feedback.push("Strong draft. Now read it aloud and check pronunciation.");
+      document.getElementById("blogFeedback").innerHTML = feedback.map(item => `<div>${item}</div>`).join("");
+    }
+
+    function clearBlog() {
+      document.getElementById("blogDraft").value = "";
+      document.getElementById("blogFeedback").textContent = "";
+    }
+
+    function renderBookPages() {
+      const container = document.getElementById("bookPages");
+      const pages = Array.from({ length: 12 }, (_, i) => String(i + 34).padStart(3, "0"));
+      container.innerHTML = pages.map(page => `
+        <div class="col-md-6 col-xl-4">
+          <figure class="mb-0">
+            <img class="book-page" src="assets/book/unit1/unit1-page-${page}.png" alt="Unit 1 teacher guide page ${Number(page)}">
+            <figcaption class="small-muted mt-2">Teacher Guide PDF page ${Number(page)}</figcaption>
+          </figure>
+        </div>
+      `).join("");
+    }
+
+    document.querySelectorAll("aside .nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        document.querySelectorAll("aside .nav-link").forEach(item => item.classList.remove("active"));
+        link.classList.add("active");
+      });
+    });
+
+    renderVocab();
+    renderQuiz();
+    renderBookPages();
+  </script>
+</body>
+</html>

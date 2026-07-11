@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit 1 Class Agenda - Teacher Guide</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d9e2ec;
+      --paper: #f7f9fc;
+      --white: #ffffff;
+      --teal: #0f766e;
+      --blue: #2457c5;
+      --green: #15803d;
+      --amber: #b45309;
+      --rose: #be123c;
+      --violet: #6941c6;
+    }
+
+    body {
+      color: var(--ink);
+      background: var(--paper);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      padding: 2rem 0;
+    }
+
+    .label {
+      color: var(--teal);
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+
+    .section-band {
+      border-bottom: 1px solid var(--line);
+      padding: 2rem 0;
+    }
+
+    .cardlet {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 1rem;
+      height: 100%;
+    }
+
+    .agenda-item {
+      display: grid;
+      grid-template-columns: 135px 1fr;
+      gap: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .time-box {
+      border-radius: 8px;
+      background: #ecfdf8;
+      color: var(--teal);
+      padding: .85rem;
+      text-align: center;
+      font-weight: 850;
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    .stage-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: .32rem .65rem;
+      font-weight: 800;
+      font-size: .82rem;
+      background: #eef4ff;
+      color: #1849a9;
+      margin: .12rem .12rem .12rem 0;
+    }
+
+    .screen-link {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: .4rem .65rem;
+      text-decoration: none;
+      color: var(--ink);
+      background: #ffffff;
+      font-weight: 750;
+      margin: .12rem .12rem .12rem 0;
+    }
+
+    .screen-link:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .teacher-says {
+      border-left: 4px solid var(--teal);
+      background: #ecfdf8;
+      border-radius: 0 8px 8px 0;
+      padding: .75rem .85rem;
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .progress {
+      height: .75rem;
+      background: #e8edf5;
+    }
+
+    .progress-bar {
+      background: var(--teal);
+    }
+
+    .checkline {
+      display: block;
+      border-bottom: 1px solid var(--line);
+      padding: .65rem 0;
+    }
+
+    .checkline:last-child {
+      border-bottom: 0;
+    }
+
+    .phase-title {
+      font-size: 1.12rem;
+      font-weight: 850;
+      margin: 0 0 .35rem;
+    }
+
+    .table-clean {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .table-clean th,
+    .table-clean td {
+      padding: .75rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .table-clean th {
+      background: #f1f5f9;
+    }
+
+    .table-clean tr:last-child td {
+      border-bottom: 0;
+    }
+
+    @media (max-width: 900px) {
+      .agenda-item {
+        grid-template-columns: 1fr;
+      }
+
+      .time-box {
+        text-align: left;
+        place-items: start;
+      }
+    }
+
+    @media print {
+      .topbar,
+      .no-print {
+        display: none;
+      }
+
+      body {
+        background: #ffffff;
+      }
+
+      .section-band,
+      .hero {
+        padding: 1rem 0;
+      }
+
+      .agenda-item {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar py-2">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between gap-3">
+      <div>
+        <div class="label">Teacher Operating Agenda</div>
+        <strong>Unit 1 - Making Plans / 4-hour Saturday class</strong>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-outline-secondary btn-sm" href="index.html">Main Page</a>
+        <a class="btn btn-outline-secondary btn-sm" href="unit1-teacher-slides.html">Teacher Slides</a>
+        <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container-fluid px-4">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <div class="label">Saturday, July 11, 2026</div>
+          <h1 class="display-6 fw-bold mb-2">Class Agenda: What We Do at Each Moment</h1>
+          <p class="lead mb-3">Use this page as your live guide: sequence, timing, screen to open, teacher language, student action, and expected product.</p>
+          <div>
+            <span class="stage-badge">Academic reminders</span>
+            <span class="stage-badge">Vocabulary</span>
+            <span class="stage-badge">Grammar</span>
+            <span class="stage-badge">Speaking</span>
+            <span class="stage-badge">Writing</span>
+            <span class="stage-badge">Final role-play</span>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="cardlet">
+            <h2 class="h5 fw-bold">Class Progress</h2>
+            <p class="mini mb-2">Mark each stage as completed while teaching.</p>
+            <div class="progress mb-2" role="progressbar" aria-label="Class progress">
+              <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+            <strong id="progressText">0 of 10 stages complete</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="row g-3">
+          <div class="col-lg-8">
+            <div class="cardlet">
+              <div class="label">Lesson Target</div>
+              <h2 class="h4 fw-bold">Final Outcome</h2>
+              <p class="mb-0">By the end of class, students will perform a short role-play or group explanation where they invite classmates, make arrangements, mention weather, use present progressive for future plans, and explain why their plan works for everyone.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="cardlet">
+              <div class="label">Core Pages</div>
+              <a class="screen-link" href="saturday-calendar.html">Saturday Calendar</a>
+              <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides</a>
+              <a class="screen-link" href="unit1-student-practice.html">Student Practice</a>
+              <a class="screen-link" href="index.html">Main Page</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="label">Live Agenda</div>
+        <h2 class="h3 fw-bold mb-3">4-hour teaching sequence</h2>
+
+        <article class="agenda-item">
+          <div class="time-box">0:00-0:10<br>10 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">1. Welcome + Academic Dates</h3>
+            <p><strong>Purpose:</strong> Start organized and make sure students know key dates.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="saturday-calendar.html">Saturday Calendar</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "Before we start Unit 1, let's look at the most important dates: midterm, final exam, and deadlines."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Identify midterm and final exam dates.</p>
+            <p class="mb-0"><strong>Product:</strong> Students know Aug 8 = midterm, Sep 12 = final.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">0:10-0:25<br>15 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">2. Unit Opening + Can-Do Goals</h3>
+            <p><strong>Purpose:</strong> Show the learning route and final goal.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides 1-4</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "Today grammar helps us do something real: make plans with other people."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Answer: "What are you doing this weekend?"</p>
+            <p class="mb-0"><strong>Product:</strong> One spoken sentence about the weekend.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">0:25-0:50<br>25 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">3. Weather Vocabulary</h3>
+            <p><strong>Purpose:</strong> Build vocabulary students will use in plans.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides 6-7</a> <a class="screen-link" href="unit1-student-practice.html">Student Practice 2-3</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "Weather changes the plan. Give me a weather word and an activity."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Listen, repeat, and create "It is..., so..." sentences.</p>
+            <p class="mb-0"><strong>Product:</strong> One weather + plan sentence.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">0:50-1:15<br>25 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">4. Real English + Natural Reactions</h3>
+            <p><strong>Purpose:</strong> Make conversations sound more natural.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slide 8</a> <a class="screen-link" href="unit1-student-practice.html">Student Practice 4</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "These phrases help you react like a real speaker, not like a grammar robot."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Match phrases to situations and react to a partner.</p>
+            <p class="mb-0"><strong>Product:</strong> One mini exchange using a Real English phrase.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">1:15-1:55<br>40 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">5. Grammar 1: Simple Present vs Present Progressive</h3>
+            <p><strong>Purpose:</strong> Contrast routines with actions happening now.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides 9-12</a> <a class="screen-link" href="unit1-student-practice.html">Student Practice 5</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "Look for the time expression. It tells you if the action is a habit or happening now."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Complete grammar quiz and explain two answers.</p>
+            <p class="mb-0"><strong>Product:</strong> Two correct tense examples: one habit, one action now.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">1:55-2:10<br>15 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">6. Break + Reset</h3>
+            <p><strong>Purpose:</strong> Give students a short break and prepare for speaking.</p>
+            <p><strong>Screen:</strong> Keep agenda visible.</p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "When we return, we use the grammar to invite someone and make a real plan."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Break. Optional: write one plan for this week.</p>
+            <p class="mb-0"><strong>Product:</strong> Students return ready for speaking.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">2:10-2:50<br>40 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">7. Grammar 2 + Invitations</h3>
+            <p><strong>Purpose:</strong> Use present progressive for future arrangements and invite a friend.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides 13-16</a> <a class="screen-link" href="unit1-student-practice.html">Student Practice 6</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "The verb looks present, but the time expression makes it future."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Build and practice invitation dialogues.</p>
+            <p class="mb-0"><strong>Product:</strong> Pair dialogue with invitation, answer, time, and place.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">2:50-3:20<br>30 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">8. Listening + Reading Connection</h3>
+            <p><strong>Purpose:</strong> Identify plan details in spoken/written context.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides 17-18</a> <a class="screen-link" href="unit1-student-practice.html">Student Practice 7</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "When you hear a plan, catch four things: who, where, when, and what."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Answer plan-detail questions.</p>
+            <p class="mb-0"><strong>Product:</strong> Complete who/where/when/what answers.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">3:20-3:40<br>20 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">9. Writing: Trip Blog Paragraph</h3>
+            <p><strong>Purpose:</strong> Transfer unit language to short writing.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides 19-20</a> <a class="screen-link" href="unit1-student-practice.html">Student Practice 8</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "A blog tells information and feelings. Use adjectives to make it interesting."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Write a short blog paragraph with one adjective and one future plan.</p>
+            <p class="mb-0"><strong>Product:</strong> 3-5 sentence blog paragraph.</p>
+          </div>
+        </article>
+
+        <article class="agenda-item">
+          <div class="time-box">3:40-4:00<br>20 min</div>
+          <div>
+            <label class="float-end no-print"><input class="form-check-input stage-check" type="checkbox"> Done</label>
+            <h3 class="phase-title">10. Final Role-Play + Exit Ticket</h3>
+            <p><strong>Purpose:</strong> Produce the final oral task and close with quick assessment.</p>
+            <p><strong>Screen:</strong> <a class="screen-link" href="unit1-teacher-slides.html">Teacher Slides 21-26</a> <a class="screen-link" href="unit1-student-practice.html">Student Practice 9-10</a></p>
+            <div class="teacher-says"><strong>Teacher says:</strong> "Your final plan needs activity, time, place, weather, reason, and a backup plan."</div>
+            <p class="mt-2 mb-1"><strong>Students do:</strong> Present or rehearse group plan. Complete exit ticket.</p>
+            <p class="mb-0"><strong>Product:</strong> Short role-play/group explanation + exit ticket.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-band">
+      <div class="container-fluid px-4">
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <div class="cardlet">
+              <div class="label">Quick Teacher Checklist</div>
+              <h2 class="h4 fw-bold">Before class</h2>
+              <label class="checkline"><input class="form-check-input me-2" type="checkbox"> Open Main Page, Calendar, Teacher Slides, and Student Practice in browser tabs.</label>
+              <label class="checkline"><input class="form-check-input me-2" type="checkbox"> Test projector or screen sharing.</label>
+              <label class="checkline"><input class="form-check-input me-2" type="checkbox"> Test audio for vocabulary and model sentences.</label>
+              <label class="checkline"><input class="form-check-input me-2" type="checkbox"> Decide pair/group arrangement.</label>
+              <label class="checkline"><input class="form-check-input me-2" type="checkbox"> Keep final exam and midterm dates visible at start.</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="cardlet">
+              <div class="label">Board Plan</div>
+              <h2 class="h4 fw-bold">Keep these frames visible</h2>
+              <table class="table-clean">
+                <tbody>
+                  <tr><td>Weather</td><td>It is..., so we can...</td></tr>
+                  <tr><td>Invitation</td><td>Would you like to...?</td></tr>
+                  <tr><td>Decline</td><td>Sorry, I can't. I'm...</td></tr>
+                  <tr><td>Future plan</td><td>We are meeting at... on...</td></tr>
+                  <tr><td>Reason</td><td>This works because...</td></tr>
+                  <tr><td>Backup</td><td>However, if..., we are...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const checks = Array.from(document.querySelectorAll(".stage-check"));
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    function updateProgress() {
+      const done = checks.filter(check => check.checked).length;
+      const total = checks.length;
+      progressBar.style.width = `${Math.round((done / total) * 100)}%`;
+      progressText.textContent = `${done} of ${total} stages complete`;
+    }
+
+    checks.forEach(check => check.addEventListener("change", updateProgress));
+    updateProgress();
+  </script>
+</body>
+</html>

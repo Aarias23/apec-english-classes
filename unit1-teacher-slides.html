@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit 1 Teacher Slides - Making Plans</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #d8dee8;
+      --teal: #0f766e;
+      --blue: #2457c5;
+      --green: #16703a;
+      --amber: #a15c08;
+      --rose: #b42342;
+      --violet: #6941c6;
+      --bg: #f6f8fb;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .deck {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .deck-header,
+    .deck-footer {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      padding: .75rem 1rem;
+    }
+
+    .deck-footer {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+    }
+
+    .brand {
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .slide-stage {
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      min-height: 0;
+    }
+
+    .slide {
+      display: none;
+      width: min(1220px, 100%);
+      min-height: min(735px, calc(100vh - 150px));
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: clamp(1.1rem, 2.7vw, 2.15rem);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, .08);
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.1rem;
+    }
+
+    .section-label {
+      color: var(--teal);
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .76rem;
+      margin-bottom: .55rem;
+    }
+
+    .slide-title {
+      font-size: clamp(1.9rem, 3.7vw, 3.75rem);
+      line-height: 1.03;
+      font-weight: 850;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.55vw, 1.22rem);
+      max-width: 900px;
+    }
+
+    .teacher-note {
+      border-left: 4px solid var(--teal);
+      background: #ecfdf8;
+      border-radius: 0 8px 8px 0;
+      padding: .85rem 1rem;
+      font-size: 1rem;
+    }
+
+    .prompt-box {
+      border: 1px solid var(--line);
+      background: #fbfcff;
+      border-radius: 8px;
+      padding: .9rem 1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .9rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .9rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .85rem;
+    }
+
+    .cardlet {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: .95rem;
+      height: 100%;
+    }
+
+    .cardlet h3 {
+      color: var(--ink);
+      font-size: 1.06rem;
+      font-weight: 850;
+      margin-bottom: .42rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: .32rem .65rem;
+      color: var(--blue);
+      background: #eef4ff;
+      font-weight: 760;
+      font-size: .84rem;
+      margin: .12rem;
+    }
+
+    .tag.green {
+      color: var(--green);
+      background: #ecfdf3;
+    }
+
+    .tag.amber {
+      color: var(--amber);
+      background: #fff7ed;
+    }
+
+    .tag.rose {
+      color: var(--rose);
+      background: #fff1f3;
+    }
+
+    .tag.violet {
+      color: var(--violet);
+      background: #f4f3ff;
+    }
+
+    .formula {
+      display: inline-block;
+      border-radius: 8px;
+      background: #111827;
+      color: #ffffff;
+      padding: .45rem .65rem;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: .95rem;
+      margin: .1rem 0;
+    }
+
+    .table-clean {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    .table-clean th,
+    .table-clean td {
+      padding: .75rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .table-clean th {
+      background: #f1f5f9;
+      color: var(--ink);
+    }
+
+    .table-clean tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .time-block {
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--teal);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: .85rem;
+    }
+
+    .time-block:nth-child(2) { border-top-color: var(--blue); }
+    .time-block:nth-child(3) { border-top-color: var(--green); }
+    .time-block:nth-child(4) { border-top-color: var(--amber); }
+    .time-block:nth-child(5) { border-top-color: var(--violet); }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: .6rem;
+      align-items: stretch;
+    }
+
+    .arrow {
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      font-weight: 900;
+      font-size: 1.5rem;
+    }
+
+    .model-response {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.1rem;
+      background: #f9fbff;
+      font-size: clamp(1.05rem, 1.85vw, 1.32rem);
+      line-height: 1.5;
+    }
+
+    .book-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+    }
+
+    .book-strip img {
+      width: 100%;
+      max-height: 190px;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+    }
+
+    .progress {
+      height: .65rem;
+      background: #e8edf5;
+    }
+
+    .progress-bar {
+      background: var(--teal);
+    }
+
+    .mini {
+      color: var(--muted);
+      font-size: .91rem;
+    }
+
+    .speak-btn {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--teal);
+      font-weight: 850;
+      padding: .32rem .6rem;
+    }
+
+    @media (max-width: 960px) {
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .timeline,
+      .book-strip,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow {
+        transform: rotate(90deg);
+      }
+
+      .slide {
+        min-height: auto;
+        overflow: visible;
+      }
+    }
+
+    @media print {
+      .deck-header,
+      .deck-footer {
+        display: none;
+      }
+
+      .deck,
+      .slide-stage {
+        display: block;
+      }
+
+      .slide,
+      .slide.active {
+        display: block;
+        min-height: 100vh;
+        box-shadow: none;
+        border: 0;
+        page-break-after: always;
+        overflow: visible;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <header class="deck-header">
+      <div class="d-flex align-items-center justify-content-between gap-3">
+        <div>
+          <div class="brand">Link It! 2e - Unit 1 Teacher Screen</div>
+          <strong>Making Plans: Vocabulary, Grammar, Speaking, Reading, Writing</strong>
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-secondary btn-sm" href="index.html">Class Hub</a>
+          <button class="btn btn-outline-secondary btn-sm" onclick="window.print()">Print</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="slide-stage">
+      <section class="slide active" data-title="Opening Frame">
+        <div>
+          <div class="section-label">Slide 1 - Opening Frame</div>
+          <h1 class="slide-title">Unit 1: Making Plans</h1>
+          <p class="subtitle mt-3">Today we will use English to invite people, make arrangements, talk about weather, understand travel plans, and present a plan that works for everyone.</p>
+        </div>
+        <div class="grid-2">
+          <div class="teacher-note"><strong>Teacher says:</strong> "In this unit, grammar helps us do something practical: organize real plans with other people."</div>
+          <div class="prompt-box"><strong>Student prompt:</strong><br>What are you doing this weekend?<br><br><strong>Useful language:</strong> I am... / I usually... / I am not sure yet.</div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Unit Roadmap">
+        <div>
+          <div class="section-label">Slide 2 - Unit Roadmap</div>
+          <h2 class="slide-title">What We Are Learning</h2>
+          <p class="subtitle mt-3">Every part of the lesson supports the final speaking task.</p>
+        </div>
+        <div class="timeline">
+          <div class="time-block"><strong>1. Vocabulary</strong><br>Weather words and activity words.</div>
+          <div class="time-block"><strong>2. Grammar</strong><br>Simple present vs present progressive.</div>
+          <div class="time-block"><strong>3. Future Plans</strong><br>Present progressive for arrangements.</div>
+          <div class="time-block"><strong>4. Skills</strong><br>Speaking, listening, reading, writing.</div>
+          <div class="time-block"><strong>5. Product</strong><br>Group plan and role-play.</div>
+        </div>
+        <div class="teacher-note"><strong>Teacher says:</strong> "We are not studying isolated words. We are building a complete conversation."</div>
+      </section>
+
+      <section class="slide" data-title="Can-Do Goals">
+        <div>
+          <div class="section-label">Slide 3 - Can-Do Goals</div>
+          <h2 class="slide-title">By the End, I Can...</h2>
+        </div>
+        <div class="grid-3">
+          <div class="cardlet"><h3>Invite</h3><p>I can invite a friend and respond politely.</p><p class="formula">Would you like to...?</p></div>
+          <div class="cardlet"><h3>Describe</h3><p>I can describe the weather and connect it to a plan.</p><p class="formula">It is..., so...</p></div>
+          <div class="cardlet"><h3>Explain Plans</h3><p>I can say what people are doing now and in the future.</p><p class="formula">I am meeting...</p></div>
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> Which goal is easy for you? Which one needs practice?</div>
+      </section>
+
+      <section class="slide" data-title="Context Connection">
+        <div>
+          <div class="section-label">Slide 4 - Reading / Context Connection</div>
+          <h2 class="slide-title">The Unit Story</h2>
+          <p class="subtitle mt-3">The unit moves from simple conversations to a complete plan and a short travel blog.</p>
+        </div>
+        <div class="flow">
+          <div class="cardlet"><h3>Dialogues</h3><p>Friends make plans and respond to invitations.</p></div>
+          <div class="arrow">></div>
+          <div class="cardlet"><h3>Travel Plans</h3><p>People describe future arrangements with time and place.</p></div>
+          <div class="arrow">></div>
+          <div class="cardlet"><h3>Trip Blog</h3><p>A writer describes a trip with details, adjectives, and plans.</p></div>
+        </div>
+        <div class="teacher-note"><strong>Teacher says:</strong> "Pay attention to how every text answers: What is happening? What is planned? Why?"</div>
+      </section>
+
+      <section class="slide" data-title="Book Reference">
+        <div>
+          <div class="section-label">Slide 5 - Book Reference</div>
+          <h2 class="slide-title">Unit 1 Pages We Are Using</h2>
+          <p class="subtitle mt-3">Use these as teacher references during the lesson. Avoid projecting copyrighted pages publicly outside class.</p>
+        </div>
+        <div class="book-strip">
+          <img src="assets/book/unit1/unit1-page-034.png" alt="Unit 1 page 34">
+          <img src="assets/book/unit1/unit1-page-036.png" alt="Unit 1 page 36">
+          <img src="assets/book/unit1/unit1-page-040.png" alt="Unit 1 page 40">
+          <img src="assets/book/unit1/unit1-page-042.png" alt="Unit 1 page 42">
+        </div>
+        <div class="prompt-box"><strong>Teacher focus:</strong> page 34 making plans, page 36 weather, pages 37-41 grammar and speaking, pages 42-43 blog, page 44 global skills, page 45 review.</div>
+      </section>
+
+      <section class="slide" data-title="Weather Vocabulary">
+        <div>
+          <div class="section-label">Slide 6 - Vocabulary: Weather</div>
+          <h2 class="slide-title">What's the Weather Like?</h2>
+          <p class="subtitle mt-3">Students need weather vocabulary to choose activities and explain plans.</p>
+        </div>
+        <div class="grid-4">
+          <div class="cardlet"><h3>Clear Weather</h3><span class="tag">sunny</span><span class="tag">warm</span><span class="tag">hot</span><p>It is sunny and warm.</p></div>
+          <div class="cardlet"><h3>Bad Weather</h3><span class="tag rose">rainy</span><span class="tag rose">stormy</span><span class="tag rose">wet</span><p>It is rainy today.</p></div>
+          <div class="cardlet"><h3>Cold Weather</h3><span class="tag green">cold</span><span class="tag green">snowy</span><span class="tag green">windy</span><p>It is cold and windy.</p></div>
+          <div class="cardlet"><h3>Low Visibility</h3><span class="tag amber">cloudy</span><span class="tag amber">foggy</span><span class="tag amber">dry</span><p>It is cloudy this morning.</p></div>
+        </div>
+        <div class="prompt-box"><strong>Speaking frame:</strong> It is <em>weather word</em>, so we can <em>activity</em>.</div>
+      </section>
+
+      <section class="slide" data-title="Weather Practice">
+        <div>
+          <div class="section-label">Slide 7 - Vocabulary Practice</div>
+          <h2 class="slide-title">Weather Changes the Plan</h2>
+        </div>
+        <table class="table-clean">
+          <thead><tr><th>Weather</th><th>Good Activity</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td>Sunny</td><td>go to the park</td><td>because we can be outside</td></tr>
+            <tr><td>Rainy</td><td>watch a movie</td><td>because we can stay inside</td></tr>
+            <tr><td>Windy</td><td>fly a kite</td><td>because the wind helps</td></tr>
+            <tr><td>Cold</td><td>drink hot chocolate</td><td>because it keeps us warm</td></tr>
+          </tbody>
+        </table>
+        <div class="grid-2">
+          <div class="teacher-note"><strong>Teacher says:</strong> "A strong plan has a reason. Weather is one reason."</div>
+          <div class="prompt-box"><strong>Student prompt:</strong> Choose one weather word and create a plan.</div>
+        </div>
+      </section>
+
+      <section class="slide" data-title="Real English">
+        <div>
+          <div class="section-label">Slide 8 - Real English</div>
+          <h2 class="slide-title">Natural Reactions</h2>
+          <p class="subtitle mt-3">These phrases help students sound natural in conversations.</p>
+        </div>
+        <div class="grid-3">
+          <div class="cardlet"><h3>What a bummer!</h3><p>Use it when something is disappointing.</p><p><strong>Model:</strong> "I can't go." "What a bummer!"</p><button class="speak-btn" onclick="speak('What a bummer!')">Listen</button></div>
+          <div class="cardlet"><h3>You know what?</h3><p>Use it when you have an idea or realize something.</p><p><strong>Model:</strong> "You know what? Let's meet earlier."</p><button class="speak-btn" onclick="speak('You know what? Let us meet earlier.')">Listen</button></div>
+          <div class="cardlet"><h3>Get out of here!</h3><p>Use it to show surprise.</p><p><strong>Model:</strong> "We won!" "Get out of here!"</p><button class="speak-btn" onclick="speak('Get out of here!')">Listen</button></div>
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> React to your partner's sentence using one Real English phrase.</div>
+      </section>
+
+      <section class="slide" data-title="Grammar 1">
+        <div>
+          <div class="section-label">Slide 9 - Grammar: Simple Present</div>
+          <h2 class="slide-title">Simple Present = Habits and Routines</h2>
+        </div>
+        <div class="grid-2">
+          <div class="cardlet">
+            <h3>Meaning</h3>
+            <p>Use the simple present for things that happen regularly.</p>
+            <p class="formula">subject + base verb</p>
+            <p class="formula">he / she / it + verb-s</p>
+          </div>
+          <div class="cardlet">
+            <h3>Examples</h3>
+            <p>I play basketball on Fridays.</p>
+            <p>She visits her aunt every summer.</p>
+            <p>We usually study after class.</p>
+          </div>
+        </div>
+        <div class="prompt-box"><strong>Speaking frame:</strong> I usually... / My friend usually...</div>
+      </section>
+
+      <section class="slide" data-title="Grammar 2">
+        <div>
+          <div class="section-label">Slide 10 - Grammar: Present Progressive Now</div>
+          <h2 class="slide-title">Present Progressive = Happening Now</h2>
+        </div>
+        <div class="grid-2">
+          <div class="cardlet">
+            <h3>Form</h3>
+            <p class="formula">am / is / are + verb-ing</p>
+            <p>Use it for actions happening now or around now.</p>
+          </div>
+          <div class="cardlet">
+            <h3>Examples</h3>
+            <p>I am studying now.</p>
+            <p>She is looking at an email.</p>
+            <p>They are playing a game.</p>
+          </div>
+        </div>
+        <div class="prompt-box"><strong>Speaking frame:</strong> Right now, I am... / Today, we are...</div>
+      </section>
+
+      <section class="slide" data-title="Grammar Contrast">
+        <div>
+          <div class="section-label">Slide 11 - Grammar Contrast</div>
+          <h2 class="slide-title">Habit or Happening Now?</h2>
+        </div>
+        <table class="table-clean">
+          <thead><tr><th>Simple Present</th><th>Present Progressive</th><th>Clue Words</th></tr></thead>
+          <tbody>
+            <tr><td>I play soccer on Saturdays.</td><td>I am playing soccer now.</td><td>usually, every day, now, today</td></tr>
+            <tr><td>She studies English twice a week.</td><td>She is studying English right now.</td><td>on Mondays, at the moment</td></tr>
+            <tr><td>They go shopping after school.</td><td>They are going shopping today.</td><td>after school, today</td></tr>
+          </tbody>
+        </table>
+        <div class="teacher-note"><strong>Teacher says:</strong> "Look for the time expression. It usually tells you which tense you need."</div>
+      </section>
+
+      <section class="slide" data-title="Grammar Practice">
+        <div>
+          <div class="section-label">Slide 12 - Controlled Practice</div>
+          <h2 class="slide-title">Choose the Correct Tense</h2>
+        </div>
+        <div class="grid-2">
+          <div class="cardlet"><h3>1</h3><p>My brother usually ___ basketball after school.</p><p><strong>Answer:</strong> plays</p></div>
+          <div class="cardlet"><h3>2</h3><p>Listen! The students ___ a dialogue.</p><p><strong>Answer:</strong> are practicing</p></div>
+          <div class="cardlet"><h3>3</h3><p>We ___ outside school tomorrow.</p><p><strong>Answer:</strong> are meeting</p></div>
+          <div class="cardlet"><h3>4</h3><p>I ___ English every Tuesday.</p><p><strong>Answer:</strong> study</p></div>
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> Explain why each answer is correct.</div>
+      </section>
+
+      <section class="slide" data-title="Future Plans">
+        <div>
+          <div class="section-label">Slide 13 - Grammar: Future Arrangements</div>
+          <h2 class="slide-title">Present Progressive for Future Plans</h2>
+          <p class="subtitle mt-3">Use present progressive when the future plan is arranged.</p>
+        </div>
+        <div class="grid-3">
+          <div class="cardlet"><h3>Question</h3><p>What are you doing on Friday?</p><p class="formula">What + be + subject + verb-ing?</p></div>
+          <div class="cardlet"><h3>Answer</h3><p>I am visiting my aunt.</p><p class="formula">subject + be + verb-ing</p></div>
+          <div class="cardlet"><h3>Details</h3><p>We are leaving at six o'clock.</p><p class="formula">time + place</p></div>
+        </div>
+        <div class="teacher-note"><strong>Teacher says:</strong> "The verb looks present, but the time expression makes it future."</div>
+      </section>
+
+      <section class="slide" data-title="Time Expressions">
+        <div>
+          <div class="section-label">Slide 14 - Time Expressions</div>
+          <h2 class="slide-title">Time Words Guide the Listener</h2>
+        </div>
+        <div class="grid-3">
+          <div class="cardlet"><h3>Habit</h3><span class="tag">usually</span><span class="tag">every day</span><span class="tag">on Mondays</span><p>I usually play soccer.</p></div>
+          <div class="cardlet"><h3>Now</h3><span class="tag green">now</span><span class="tag green">right now</span><span class="tag green">at the moment</span><p>I am studying now.</p></div>
+          <div class="cardlet"><h3>Future Plan</h3><span class="tag amber">tomorrow</span><span class="tag amber">this weekend</span><span class="tag amber">on Friday</span><p>I am meeting Ana tomorrow.</p></div>
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> Add a time expression to change the meaning of a sentence.</div>
+      </section>
+
+      <section class="slide" data-title="Speaking Invitations">
+        <div>
+          <div class="section-label">Slide 15 - Speaking: Invite a Friend</div>
+          <h2 class="slide-title">Invitation Conversation</h2>
+        </div>
+        <div class="grid-2">
+          <div class="cardlet">
+            <h3>Open the conversation</h3>
+            <p>Are you doing anything on Saturday?</p>
+            <p>What are you doing on Friday?</p>
+            <p>Would you like to go swimming?</p>
+          </div>
+          <div class="cardlet">
+            <h3>Respond</h3>
+            <p>That sounds great.</p>
+            <p>Sorry, I can't. I'm visiting my family.</p>
+            <p>What a bummer! Maybe next time.</p>
+          </div>
+        </div>
+        <div class="prompt-box"><strong>Pair task:</strong> Student A invites. Student B accepts or declines with a reason.</div>
+      </section>
+
+      <section class="slide" data-title="Arrangements">
+        <div>
+          <div class="section-label">Slide 16 - Speaking: Make Arrangements</div>
+          <h2 class="slide-title">Make the Plan Clear</h2>
+        </div>
+        <table class="table-clean">
+          <thead><tr><th>Information</th><th>Question</th><th>Model Answer</th></tr></thead>
+          <tbody>
+            <tr><td>Activity</td><td>What are we doing?</td><td>We are watching a basketball game.</td></tr>
+            <tr><td>Time</td><td>What time are we meeting?</td><td>We are meeting at 5:30.</td></tr>
+            <tr><td>Place</td><td>Where are we meeting?</td><td>We are meeting outside school.</td></tr>
+            <tr><td>Reason</td><td>Why is it a good plan?</td><td>Because everyone likes sports.</td></tr>
+          </tbody>
+        </table>
+        <div class="teacher-note"><strong>Teacher says:</strong> "A good arrangement answers the listener's questions before they ask."</div>
+      </section>
+
+      <section class="slide" data-title="Listening Skill">
+        <div>
+          <div class="section-label">Slide 17 - Listening: Travel Plans</div>
+          <h2 class="slide-title">Listen for Plan Details</h2>
+          <p class="subtitle mt-3">When students listen to plans, they should catch who, where, when, and what.</p>
+        </div>
+        <div class="grid-4">
+          <div class="cardlet"><h3>Who?</h3><p>Who is going?</p></div>
+          <div class="cardlet"><h3>Where?</h3><p>Where are they going?</p></div>
+          <div class="cardlet"><h3>When?</h3><p>What time are they leaving?</p></div>
+          <div class="cardlet"><h3>What?</h3><p>What are they doing there?</p></div>
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> After listening, report one complete plan detail.</div>
+      </section>
+
+      <section class="slide" data-title="Reading Skill">
+        <div>
+          <div class="section-label">Slide 18 - Reading: Travel Blog</div>
+          <h2 class="slide-title">Understand a Blog About a Trip</h2>
+        </div>
+        <div class="grid-3">
+          <div class="cardlet"><h3>Introduction</h3><p>Who is writing? Where are they?</p><p><strong>Frame:</strong> The writer is in...</p></div>
+          <div class="cardlet"><h3>Main Details</h3><p>What is happening? What are the plans?</p><p><strong>Frame:</strong> They are going to...</p></div>
+          <div class="cardlet"><h3>Culture</h3><p>What traditions, places, or events are important?</p><p><strong>Frame:</strong> One important tradition is...</p></div>
+        </div>
+        <div class="teacher-note"><strong>Teacher says:</strong> "A blog is personal. It tells information and feelings."</div>
+      </section>
+
+      <section class="slide" data-title="Writing Skill">
+        <div>
+          <div class="section-label">Slide 19 - Writing: Blog Paragraph</div>
+          <h2 class="slide-title">Write with Useful Adjectives</h2>
+        </div>
+        <div class="grid-2">
+          <div class="cardlet">
+            <h3>Adjectives from the Unit</h3>
+            <p><span class="tag">amazing</span><span class="tag">incredible</span><span class="tag">fantastic</span><span class="tag">awesome</span><span class="tag">wonderful</span><span class="tag">colorful</span><span class="tag">great</span></p>
+          </div>
+          <div class="cardlet">
+            <h3>Blog Frame</h3>
+            <p>Hi! This weekend, I am going to...</p>
+            <p>The weather is...</p>
+            <p>I am visiting...</p>
+            <p>It is a/an ___ place because...</p>
+          </div>
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> Write three sentences about a trip or event.</div>
+      </section>
+
+      <section class="slide" data-title="Culture Connection">
+        <div>
+          <div class="section-label">Slide 20 - Culture Connection</div>
+          <h2 class="slide-title">Trips and Celebrations</h2>
+          <p class="subtitle mt-3">The unit uses travel and celebrations to help students compare traditions and describe experiences.</p>
+        </div>
+        <div class="grid-3">
+          <div class="cardlet"><h3>Place</h3><p>Where does the event happen?</p><p class="formula">It takes place in...</p></div>
+          <div class="cardlet"><h3>Activities</h3><p>What do people do?</p><p class="formula">People usually...</p></div>
+          <div class="cardlet"><h3>Opinion</h3><p>Why is it interesting?</p><p class="formula">In my opinion, it is...</p></div>
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> Describe one celebration or trip from your country.</div>
+      </section>
+
+      <section class="slide" data-title="Global Skills">
+        <div>
+          <div class="section-label">Slide 21 - Global Skills</div>
+          <h2 class="slide-title">Make Plans That Work for Everyone</h2>
+        </div>
+        <div class="grid-4">
+          <div class="cardlet"><h3>Ask</h3><p>What do you think?</p></div>
+          <div class="cardlet"><h3>Listen</h3><p>Can you explain your idea?</p></div>
+          <div class="cardlet"><h3>Compare</h3><p>Which plan is better for the group?</p></div>
+          <div class="cardlet"><h3>Agree</h3><p>Let's choose this plan because...</p></div>
+        </div>
+        <div class="teacher-note"><strong>Teacher says:</strong> "Collaboration means your plan includes other people's ideas, not only your idea."</div>
+      </section>
+
+      <section class="slide" data-title="Logical Thinking">
+        <div>
+          <div class="section-label">Slide 22 - Cause and Effect / Logical Thinking</div>
+          <h2 class="slide-title">Connect Ideas Clearly</h2>
+        </div>
+        <table class="table-clean">
+          <thead><tr><th>Connector</th><th>Use</th><th>Model Sentence</th></tr></thead>
+          <tbody>
+            <tr><td>because</td><td>give a reason</td><td>I can't go because I am visiting my aunt.</td></tr>
+            <tr><td>however</td><td>show contrast</td><td>The park is fun. However, it is rainy.</td></tr>
+            <tr><td>therefore</td><td>show result</td><td>It is rainy. Therefore, we are staying inside.</td></tr>
+            <tr><td>for example</td><td>give an example</td><td>We can do indoor activities, for example, watch a movie.</td></tr>
+          </tbody>
+        </table>
+        <div class="prompt-box"><strong>Student prompt:</strong> Combine two ideas using one connector.</div>
+      </section>
+
+      <section class="slide" data-title="Production Steps">
+        <div>
+          <div class="section-label">Slide 23 - From Understanding to Production</div>
+          <h2 class="slide-title">Build the Final Oral Task</h2>
+        </div>
+        <div class="timeline">
+          <div class="time-block"><strong>Define</strong><br>Say the activity.</div>
+          <div class="time-block"><strong>Explain</strong><br>Add time and place.</div>
+          <div class="time-block"><strong>Give Example</strong><br>Add weather or detail.</div>
+          <div class="time-block"><strong>Opinion</strong><br>Say why it works.</div>
+          <div class="time-block"><strong>Conclusion</strong><br>Give a backup plan.</div>
+        </div>
+        <div class="prompt-box"><strong>Speaking frame:</strong> We are planning... We are meeting... The weather is... In my opinion... Therefore...</div>
+      </section>
+
+      <section class="slide" data-title="Final Product Model">
+        <div>
+          <div class="section-label">Slide 24 - Final Product Model</div>
+          <h2 class="slide-title">Model Group Response</h2>
+        </div>
+        <div class="model-response">
+          "This weekend, we are planning a basketball game. We are meeting outside school at 4:00 on Saturday. The weather is sunny, so it is a good day to be outside. I think this plan works because everyone likes sports. However, if it rains, we are watching a movie instead. Therefore, our plan is flexible."
+        </div>
+        <div class="prompt-box"><strong>Student prompt:</strong> Identify the activity, time, place, weather, reason, opinion, and backup plan.</div>
+      </section>
+
+      <section class="slide" data-title="Launch Activity">
+        <div>
+          <div class="section-label">Slide 25 - Launch Activity</div>
+          <h2 class="slide-title">Your Turn: Plan, Invite, Present</h2>
+          <p class="subtitle mt-3">Work in groups of three or four. Prepare a short role-play or group explanation.</p>
+        </div>
+        <div class="grid-2">
+          <div class="cardlet">
+            <h3>Your product must include</h3>
+            <p>One invitation, one response, weather, time, place, reason, one connector, and one backup plan.</p>
+          </div>
+          <div class="cardlet">
+            <h3>Success criteria</h3>
+            <p>Everyone speaks. The plan is clear. The grammar is understandable. The group explains why the plan works.</p>
+          </div>
+        </div>
+        <div class="teacher-note"><strong>Teacher says:</strong> "You are ready. Use the frames, organize your ideas, and speak with confidence."</div>
+      </section>
+
+      <section class="slide" data-title="Exit Ticket">
+        <div>
+          <div class="section-label">Slide 26 - Quick Assessment</div>
+          <h2 class="slide-title">Exit Ticket</h2>
+        </div>
+        <div class="grid-4">
+          <div class="cardlet"><h3>1 Word</h3><p>Write one weather word.</p></div>
+          <div class="cardlet"><h3>1 Phrase</h3><p>Write one invitation phrase.</p></div>
+          <div class="cardlet"><h3>1 Sentence</h3><p>Write one future arrangement.</p></div>
+          <div class="cardlet"><h3>1 Reflection</h3><p>What do you need to practice?</p></div>
+        </div>
+        <div class="prompt-box"><strong>Useful language:</strong> I learned... / I can... / I need more practice with...</div>
+      </section>
+    </main>
+
+    <footer class="deck-footer">
+      <div class="controls">
+        <button class="btn btn-outline-primary" id="prevBtn">Previous</button>
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between mb-1">
+            <span id="slideLabel" class="mini">Slide 1 of 26</span>
+            <span id="slideName" class="mini">Opening Frame</span>
+          </div>
+          <div class="progress" role="progressbar" aria-label="Slide progress">
+            <div class="progress-bar" id="progressBar" style="width: 4%"></div>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="nextBtn">Next</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const slideLabel = document.getElementById("slideLabel");
+    const slideName = document.getElementById("slideName");
+    const progressBar = document.getElementById("progressBar");
+    let current = 0;
+
+    function showSlide(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === current));
+      slideLabel.textContent = `Slide ${current + 1} of ${slides.length}`;
+      slideName.textContent = slides[current].dataset.title;
+      progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+      prevBtn.disabled = current === 0;
+      nextBtn.textContent = current === slides.length - 1 ? "Finish" : "Next";
+    }
+
+    function speak(text) {
+      if (!("speechSynthesis" in window)) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      utterance.rate = 0.9;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    prevBtn.addEventListener("click", () => showSlide(current - 1));
+    nextBtn.addEventListener("click", () => showSlide(current + 1));
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "ArrowRight" || event.key === "PageDown") showSlide(current + 1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(current - 1);
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
+    });
+
+    showSlide(0);
+  </script>
+</body>
+</html>
