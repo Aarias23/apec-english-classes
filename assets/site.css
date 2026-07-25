@@ -305,6 +305,87 @@ footer { display: flex; justify-content: space-between; padding: 28px clamp(22px
 .timer-presets button { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; background: white; cursor: pointer; }
 .timer-actions { margin-top: 25px; }
 
+/* Classroom whiteboard */
+.whiteboard-overlay {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  background: #edf1ed;
+}
+.whiteboard-overlay.open { display: flex; }
+.whiteboard-toolbar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  min-height: 72px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: 0 8px 25px rgba(23,63,53,.08);
+}
+.whiteboard-heading { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.whiteboard-heading > span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--forest); color: var(--mint); font-size: .72rem; font-weight: 900; }
+.whiteboard-heading small, .whiteboard-heading strong { display: block; }
+.whiteboard-heading small { margin-bottom: 2px; color: var(--muted); font-size: .55rem; font-weight: 850; letter-spacing: .12em; }
+.whiteboard-heading strong { font-size: .85rem; }
+.whiteboard-controls, .whiteboard-exit, .whiteboard-group { display: flex; align-items: center; gap: 7px; }
+.whiteboard-controls { justify-content: center; min-width: 0; }
+.whiteboard-group { padding: 4px; border-radius: 10px; background: #e9ede8; }
+.whiteboard-tool, .whiteboard-size, .whiteboard-action {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: .72rem;
+  font-weight: 780;
+}
+.whiteboard-tool.active, .whiteboard-size.active, .whiteboard-action.primary { border-color: var(--forest); background: var(--forest); color: white; }
+.whiteboard-color {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 3px solid white;
+  border-radius: 50%;
+  outline: 1px solid #bac4bd;
+  background: var(--board-color);
+  cursor: pointer;
+}
+.whiteboard-color.active { outline: 3px solid var(--forest); }
+.whiteboard-surface { position: relative; flex: 1; min-height: 0; padding: clamp(12px, 2vw, 26px); }
+#whiteboard-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #cfd7d0;
+  border-radius: 18px;
+  background-color: white;
+  background-image:
+    linear-gradient(rgba(23,63,53,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,63,53,.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+  box-shadow: var(--shadow);
+  cursor: crosshair;
+  touch-action: none;
+}
+.whiteboard-overlay.eraser-active #whiteboard-canvas { cursor: cell; }
+.whiteboard-hint {
+  position: absolute;
+  right: clamp(24px, 4vw, 50px);
+  bottom: clamp(20px, 3vw, 38px);
+  margin: 0;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.88);
+  color: var(--muted);
+  font-size: .66rem;
+  pointer-events: none;
+}
 /* Midterm review */
 .review-page { background: var(--paper); }
 .review-nav { position: static; background: var(--paper); }
@@ -357,6 +438,9 @@ footer { display: flex; justify-content: space-between; padding: 28px clamp(22px
   .progress-track { margin: 0 -10px; }
   .slide-stage { padding: 28px; min-height: 430px; }
   .goal-grid, .content-grid, .example-grid { grid-template-columns: 1fr; }
+  .whiteboard-toolbar { grid-template-columns: 1fr auto; align-items: start; }
+  .whiteboard-controls { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; overflow-x: auto; }
+  .whiteboard-exit { justify-content: end; }
 }
 @media (max-width: 600px) {
   .hero-copy h1 { font-size: 3.7rem; }
@@ -375,10 +459,14 @@ footer { display: flex; justify-content: space-between; padding: 28px clamp(22px
   .slide-stage h2 { font-size: 2.4rem; }
   .choice-grid, .exit-grid { grid-template-columns: 1fr; }
   .can-do-review { padding: 28px; }
+  .whiteboard-heading div { display: none; }
+  .whiteboard-toolbar { gap: 9px; padding: 8px; }
+  .whiteboard-action, .whiteboard-tool, .whiteboard-size { padding: 0 9px; }
+  .whiteboard-hint { display: none; }
 }
 
 @media print {
-  .hub-nav, .classroom-bar, .deck-rail, .deck-controls, .teacher-panel { display: none !important; }
+  .hub-nav, .classroom-bar, .deck-rail, .deck-controls, .teacher-panel, .whiteboard-overlay { display: none !important; }
   body { background: white; }
   .slide-stage { width: 100%; height: auto; border: 0; box-shadow: none; }
 }

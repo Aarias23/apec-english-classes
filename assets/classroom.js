@@ -15,6 +15,24 @@
   var timerSeconds = 300;
   var timerInitial = 300;
   var timerHandle = null;
+  var whiteboard = document.getElementById("whiteboard");
+  var whiteboardCanvas = document.getElementById("whiteboard-canvas");
+  var whiteboardContext = whiteboardCanvas.getContext("2d");
+  var whiteboardMode = params.get("whiteboard") === "1";
+  var whiteboardKey = "linkit2-whiteboard-lesson-" + lesson.id;
+  var whiteboardStrokes = [];
+  var activeStroke = null;
+  var boardTool = "pen";
+  var boardColor = "#17211c";
+  var boardSize = 3;
+  var whiteboardOpenButton = document.createElement("button");
+  whiteboardOpenButton.id = "whiteboard-open";
+  whiteboardOpenButton.className = "tool-button";
+  whiteboardOpenButton.type = "button";
+  whiteboardOpenButton.setAttribute("aria-label", "Open whiteboard");
+  whiteboardOpenButton.setAttribute("aria-pressed", "false");
+  whiteboardOpenButton.innerHTML = "&#9998; <span>Whiteboard</span>";
+  document.querySelector(".class-tools").insertBefore(whiteboardOpenButton, document.querySelector(".class-tools").firstChild);
 
   document.title = lesson.title + " · Link It! 2";
   document.getElementById("lesson-label").textContent = "Class " + String(lesson.id).padStart(2, "0");
@@ -101,12 +119,203 @@
     else document.exitFullscreen();
   });
   document.addEventListener("keydown", function (event) {
+    if (whiteboard.classList.contains("open")) {
+      if (event.key === "Escape") closeWhiteboard();
+      return;
+    }
     if (timerDialog.open) return;
     if (event.key === "ArrowRight" || event.key === "PageDown") next.click();
     if (event.key === "ArrowLeft" || event.key === "PageUp") previous.click();
     if (event.key.toLowerCase() === "t") setTeacher(!teacherPanel.classList.contains("open"));
   });
 
+  function loadWhiteboard() {
+    try {
+      var saved = JSON.parse(localStorage.getItem(whiteboardKey) || "[]");
+      whiteboardStrokes = Array.isArray(saved) ? saved : [];
+    } catch (error) {
+      whiteboardStrokes = [];
+    }
+  }
+
+  function saveWhiteboard() {
+    try {
+      localStorage.setItem(whiteboardKey, JSON.stringify(whiteboardStrokes));
+    } catch (error) {}
+  }
+
+  function drawStroke(stroke) {
+    if (!stroke || !stroke.points || !stroke.points.length) return;
+    var width = whiteboardCanvas.clientWidth;
+    var height = whiteboardCanvas.clientHeight;
+    whiteboardContext.save();
+    whiteboardContext.globalCompositeOperation = stroke.tool === "eraser" ? "destination-out" : "source-over";
+    whiteboardContext.strokeStyle = stroke.color;
+    whiteboardContext.fillStyle = stroke.color;
+    whiteboardContext.lineWidth = stroke.size;
+    whiteboardContext.lineCap = "round";
+    whiteboardContext.lineJoin = "round";
+    if (stroke.points.length === 1) {
+      whiteboardContext.beginPath();
+      whiteboardContext.arc(stroke.points[0].x * width, stroke.points[0].y * height, stroke.size / 2, 0, Math.PI * 2);
+      whiteboardContext.fill();
+    } else {
+      whiteboardContext.beginPath();
+      whiteboardContext.moveTo(stroke.points[0].x * width, stroke.points[0].y * height);
+      stroke.points.slice(1).forEach(function (point) {
+        whiteboardContext.lineTo(point.x * width, point.y * height);
+      });
+      whiteboardContext.stroke();
+    }
+    whiteboardContext.restore();
+  }
+
+  function renderWhiteboard() {
+    whiteboardContext.clearRect(0, 0, whiteboardCanvas.clientWidth, whiteboardCanvas.clientHeight);
+    whiteboardStrokes.forEach(drawStroke);
+    if (activeStroke) drawStroke(activeStroke);
+  }
+
+  function resizeWhiteboard() {
+    var width = Math.max(1, whiteboardCanvas.clientWidth);
+    var height = Math.max(1, whiteboardCanvas.clientHeight);
+    var ratio = window.devicePixelRatio || 1;
+    whiteboardCanvas.width = Math.round(width * ratio);
+    whiteboardCanvas.height = Math.round(height * ratio);
+    whiteboardContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+    renderWhiteboard();
+  }
+
+  function boardPoint(event) {
+    var bounds = whiteboardCanvas.getBoundingClientRect();
+    return {
+      x: Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width)),
+      y: Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height))
+    };
+  }
+
+  function openWhiteboard() {
+    setTeacher(false);
+    whiteboard.classList.add("open");
+    whiteboard.setAttribute("aria-hidden", "false");
+    whiteboardOpenButton.setAttribute("aria-pressed", "true");
+    window.requestAnimationFrame(resizeWhiteboard);
+  }
+
+  function closeWhiteboard() {
+    if (whiteboardMode && window.opener) {
+      window.close();
+      return;
+    }
+    if (whiteboardMode) {
+      window.location.href = "classroom.html?lesson=" + lesson.id + "&slide=" + current;
+      return;
+    }
+    whiteboard.classList.remove("open");
+    whiteboard.setAttribute("aria-hidden", "true");
+    whiteboardOpenButton.setAttribute("aria-pressed", "false");
+  }
+
+  whiteboardCanvas.addEventListener("pointerdown", function (event) {
+    event.preventDefault();
+    whiteboardCanvas.setPointerCapture(event.pointerId);
+    activeStroke = {
+      tool: boardTool,
+      color: boardColor,
+      size: boardTool === "eraser" ? boardSize * 3 : boardSize,
+      points: [boardPoint(event)]
+    };
+    renderWhiteboard();
+  });
+  whiteboardCanvas.addEventListener("pointermove", function (event) {
+    if (!activeStroke) return;
+    event.preventDefault();
+    var point = boardPoint(event);
+    var previousPoint = activeStroke.points[activeStroke.points.length - 1];
+    if (Math.abs(point.x - previousPoint.x) + Math.abs(point.y - previousPoint.y) < .001) return;
+    activeStroke.points.push(point);
+    renderWhiteboard();
+  });
+  function finishStroke(event) {
+    if (!activeStroke) return;
+    if (event && whiteboardCanvas.hasPointerCapture(event.pointerId)) whiteboardCanvas.releasePointerCapture(event.pointerId);
+    whiteboardStrokes.push(activeStroke);
+    activeStroke = null;
+    saveWhiteboard();
+    renderWhiteboard();
+  }
+  whiteboardCanvas.addEventListener("pointerup", finishStroke);
+  whiteboardCanvas.addEventListener("pointercancel", finishStroke);
+
+  document.querySelectorAll("[data-board-tool]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      boardTool = button.getAttribute("data-board-tool");
+      whiteboard.classList.toggle("eraser-active", boardTool === "eraser");
+      document.querySelectorAll("[data-board-tool]").forEach(function (item) {
+        var active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+    });
+  });
+  document.querySelectorAll("[data-board-color]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      boardColor = button.getAttribute("data-board-color");
+      boardTool = "pen";
+      whiteboard.classList.remove("eraser-active");
+      document.querySelectorAll("[data-board-color]").forEach(function (item) {
+        var active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      document.querySelectorAll("[data-board-tool]").forEach(function (item) {
+        var active = item.getAttribute("data-board-tool") === "pen";
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+    });
+  });
+  document.querySelectorAll("[data-board-size]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      boardSize = Number(button.getAttribute("data-board-size"));
+      document.querySelectorAll("[data-board-size]").forEach(function (item) {
+        var active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+    });
+  });
+  whiteboardOpenButton.addEventListener("click", openWhiteboard);
+  document.getElementById("whiteboard-close").addEventListener("click", closeWhiteboard);
+  document.getElementById("whiteboard-new-tab").addEventListener("click", function () {
+    var whiteboardWindow = window.open("classroom.html?lesson=" + lesson.id + "&slide=" + current + "&whiteboard=1", "linkit2-whiteboard");
+    if (whiteboardWindow) {
+      whiteboardWindow.focus();
+      if (!whiteboardMode) closeWhiteboard();
+    }
+  });
+  document.getElementById("whiteboard-undo").addEventListener("click", function () {
+    whiteboardStrokes.pop();
+    saveWhiteboard();
+    renderWhiteboard();
+  });
+  document.getElementById("whiteboard-clear").addEventListener("click", function () {
+    if (!whiteboardStrokes.length || window.confirm("Clear everything from this whiteboard?")) {
+      whiteboardStrokes = [];
+      activeStroke = null;
+      saveWhiteboard();
+      renderWhiteboard();
+    }
+  });
+  window.addEventListener("resize", function () {
+    if (whiteboard.classList.contains("open")) resizeWhiteboard();
+  });
+  window.addEventListener("storage", function (event) {
+    if (event.key === whiteboardKey) {
+      loadWhiteboard();
+      renderWhiteboard();
+    }
+  });
   function drawTimer() {
     var minutes = Math.floor(timerSeconds / 60);
     var seconds = timerSeconds % 60;
@@ -140,5 +349,10 @@
     }, 1000);
   });
   document.getElementById("timer-reset").addEventListener("click", function () { stopTimer(); timerSeconds = timerInitial; drawTimer(); });
+  loadWhiteboard();
   render();
+  if (whiteboardMode) {
+    document.getElementById("whiteboard-close").textContent = "Close tab";
+    openWhiteboard();
+  }
 }());
