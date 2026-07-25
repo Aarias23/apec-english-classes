@@ -23,6 +23,7 @@
       <div class="whiteboard-controls" role="toolbar" aria-label="Whiteboard controls">
         <div class="whiteboard-group" aria-label="Drawing tool">
           <button class="whiteboard-tool active" type="button" data-board-tool="pen" aria-pressed="true">Pen</button>
+          <button class="whiteboard-tool" type="button" data-board-tool="text" aria-pressed="false">Text</button>
           <button class="whiteboard-tool" type="button" data-board-tool="eraser" aria-pressed="false">Eraser</button>
         </div>
         <div class="whiteboard-group whiteboard-colors" aria-label="Pen color">
@@ -32,10 +33,10 @@
           <button class="whiteboard-color" type="button" data-board-color="#be123c" style="--board-color:#be123c" aria-label="Red" aria-pressed="false"></button>
           <button class="whiteboard-color" type="button" data-board-color="#b45309" style="--board-color:#b45309" aria-label="Amber" aria-pressed="false"></button>
         </div>
-        <div class="whiteboard-group" aria-label="Stroke size">
-          <button class="whiteboard-size active" type="button" data-board-size="3" aria-label="Thin stroke" aria-pressed="true">S</button>
-          <button class="whiteboard-size" type="button" data-board-size="7" aria-label="Medium stroke" aria-pressed="false">M</button>
-          <button class="whiteboard-size" type="button" data-board-size="14" aria-label="Thick stroke" aria-pressed="false">L</button>
+        <div class="whiteboard-group" aria-label="Tool size">
+          <button class="whiteboard-size" type="button" data-board-size="3" data-text-size="28" aria-label="Small size" aria-pressed="false">S</button>
+          <button class="whiteboard-size active" type="button" data-board-size="7" data-text-size="42" aria-label="Medium size" aria-pressed="true">M</button>
+          <button class="whiteboard-size" type="button" data-board-size="14" data-text-size="58" aria-label="Large size" aria-pressed="false">L</button>
         </div>
         <button id="whiteboard-undo" class="whiteboard-action" type="button">Undo</button>
         <button id="whiteboard-clear" class="whiteboard-action" type="button">Clear</button>
@@ -47,7 +48,8 @@
     </header>
     <div class="whiteboard-surface">
       <canvas id="whiteboard-canvas" aria-label="Drawing surface"></canvas>
-      <p class="whiteboard-hint">Draw with a mouse, stylus, or touch. Your work stays with this class on this device.</p>
+      <textarea id="whiteboard-text-editor" class="whiteboard-text-editor" aria-label="Whiteboard text" placeholder="Type here... Ctrl+Enter to place" hidden></textarea>
+      <p class="whiteboard-hint">Use Pen, Eraser, or Text. Your work stays with this class on this device.</p>
     </div>
   </section>
   <script src="assets/lesson-data.js"></script><script src="assets/classroom.js"></script>
