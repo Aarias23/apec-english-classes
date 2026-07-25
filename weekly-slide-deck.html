@@ -1,0 +1,1596 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unit 1: Making Plans · Week 2 — Link It! 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1b2a4a;
+        --ink-soft: #4b5a78;
+        --paper: #f7f4ec;
+        --paper-line: #e4ddcb;
+        --card: #ffffff;
+        --gold: #c8932f;
+        --gold-soft: #f3e3bf;
+        --teal: #1f7a6c;
+        --teal-soft: #d9ede9;
+        --sky: #3b6fa0;
+        --sky-soft: #dde9f3;
+        --rose: #a8445c;
+        --rose-soft: #f4dde3;
+        --violet: #6a4c93;
+        --violet-soft: #e9e1f2;
+        --steel: #556080;
+        --steel-soft: #e4e7f0;
+        --wb-bg: #eef1f6;
+        --wb-ink: #1e2a3d;
+        --shadow: 0 20px 50px -20px rgba(27, 42, 74, 0.25);
+        --radius: 18px;
+        font-size: 16px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Inter", sans-serif;
+        overflow: hidden;
+      }
+      .eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+        font-size: 0.72rem;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+
+      /* ---------- TOP BAR ---------- */
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 22px;
+        background: rgba(247, 244, 236, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--paper-line);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand .tag {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: linear-gradient(145deg, var(--gold), #a97a22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        flex-shrink: 0;
+      }
+      .brand .txt strong {
+        display: block;
+        font-size: 0.92rem;
+      }
+      .brand .txt span {
+        display: block;
+        font-size: 0.72rem;
+        color: var(--ink-soft);
+      }
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn {
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: 1px solid var(--paper-line);
+        background: #fff;
+        color: var(--ink);
+        padding: 9px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.15s ease;
+        white-space: nowrap;
+      }
+      .btn:hover {
+        border-color: var(--ink);
+        transform: translateY(-1px);
+      }
+      .btn.primary {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .btn.primary:hover {
+        background: #0f1c36;
+      }
+      .btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ---------- SECTION NAV ---------- */
+      .section-nav {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        display: flex;
+        gap: 8px;
+        padding: 10px 22px;
+        overflow-x: auto;
+        background: rgba(247, 244, 236, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--paper-line);
+      }
+      .sec-pill {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--paper-line);
+        background: #fff;
+        cursor: pointer;
+        white-space: nowrap;
+        color: var(--ink-soft);
+        transition: 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .sec-pill::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ink-soft);
+      }
+      .sec-pill:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+      }
+      .sec-pill.map::before {
+        background: var(--steel);
+      }
+      .sec-pill.vocab::before {
+        background: var(--gold);
+      }
+      .sec-pill.grammar::before {
+        background: var(--sky);
+      }
+      .sec-pill.reading::before {
+        background: var(--teal);
+      }
+      .sec-pill.global::before {
+        background: var(--rose);
+      }
+      .sec-pill.preview::before {
+        background: var(--violet);
+      }
+
+      /* ---------- SLIDE DECK ---------- */
+      #deck {
+        position: fixed;
+        inset: 0;
+        padding-top: 112px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .viewport {
+        width: min(1180px, 92vw);
+        height: min(640px, 76vh);
+        position: relative;
+      }
+      .slide {
+        position: absolute;
+        inset: 0;
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 44px 56px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(24px);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+      }
+
+      .tab {
+        position: absolute;
+        top: 24px;
+        right: -1px;
+        padding: 8px 20px 8px 16px;
+        border-radius: 10px 0 0 10px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .tab::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .perf {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 112px;
+        width: 0;
+        border-left: 2px dashed var(--paper-line);
+      }
+      .cat-start .tab {
+        background: #e9e4d6;
+        color: var(--ink-soft);
+      }
+      .cat-start .tab::before {
+        background: var(--ink-soft);
+      }
+      .cat-start .accent {
+        color: var(--ink-soft);
+      }
+      .cat-map .tab {
+        background: var(--steel-soft);
+        color: var(--steel);
+      }
+      .cat-map .tab::before {
+        background: var(--steel);
+      }
+      .cat-map .accent {
+        color: var(--steel);
+      }
+      .cat-vocab .tab {
+        background: var(--gold-soft);
+        color: var(--gold);
+      }
+      .cat-vocab .tab::before {
+        background: var(--gold);
+      }
+      .cat-vocab .accent {
+        color: var(--gold);
+      }
+      .cat-grammar .tab {
+        background: var(--sky-soft);
+        color: var(--sky);
+      }
+      .cat-grammar .tab::before {
+        background: var(--sky);
+      }
+      .cat-grammar .accent {
+        color: var(--sky);
+      }
+      .cat-reading .tab {
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+      .cat-reading .tab::before {
+        background: var(--teal);
+      }
+      .cat-reading .accent {
+        color: var(--teal);
+      }
+      .cat-global .tab {
+        background: var(--rose-soft);
+        color: var(--rose);
+      }
+      .cat-global .tab::before {
+        background: var(--rose);
+      }
+      .cat-global .accent {
+        color: var(--rose);
+      }
+      .cat-preview .tab {
+        background: var(--violet-soft);
+        color: var(--violet);
+      }
+      .cat-preview .tab::before {
+        background: var(--violet);
+      }
+      .cat-preview .accent {
+        color: var(--violet);
+      }
+
+      .slide .kicker {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 9px;
+      }
+      .slide h2 {
+        font-size: 1.95rem;
+        line-height: 1.12;
+        margin-bottom: 6px;
+      }
+      .slide .sub {
+        color: var(--ink-soft);
+        font-size: 0.98rem;
+        margin-bottom: 18px;
+      }
+      .slide-body {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 6px;
+      }
+      .slide-body::-webkit-scrollbar {
+        width: 6px;
+      }
+      .slide-body::-webkit-scrollbar-thumb {
+        background: var(--paper-line);
+        border-radius: 4px;
+      }
+
+      .cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+      .cols.wide-left {
+        grid-template-columns: 1.3fr 1fr;
+      }
+      .cols.three {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .box {
+        background: var(--paper);
+        border: 1px solid var(--paper-line);
+        border-radius: 14px;
+        padding: 16px 18px;
+      }
+      .box h4 {
+        font-family: "Inter", sans-serif;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 700;
+        color: var(--ink-soft);
+        margin: 0 0 9px;
+      }
+      .box p,
+      .box li {
+        font-size: 0.94rem;
+        line-height: 1.5;
+      }
+      ul.clean {
+        margin: 0;
+        padding-left: 1.1rem;
+      }
+      ul.clean li {
+        margin-bottom: 5px;
+      }
+      .example {
+        font-style: italic;
+        color: var(--ink);
+      }
+      .form {
+        font-style: normal;
+        font-weight: 700;
+        padding: 1px 6px;
+        border-radius: 5px;
+      }
+      .form.now {
+        background: var(--sky-soft);
+        color: var(--sky);
+      }
+      .form.habit {
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 5px;
+      }
+      .pill {
+        background: #fff;
+        border: 1px solid var(--paper-line);
+        border-radius: 999px;
+        padding: 5px 11px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+      .weather-item {
+        text-align: center;
+        background: var(--paper);
+        border: 1px solid var(--paper-line);
+        border-radius: 12px;
+        padding: 11px 5px;
+      }
+      .weather-item .ico {
+        font-size: 1.4rem;
+        display: block;
+        margin-bottom: 3px;
+      }
+      .weather-item .word {
+        font-weight: 700;
+        font-size: 0.8rem;
+      }
+      .quiz-q {
+        background: var(--paper);
+        border: 1px solid var(--paper-line);
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+      }
+      .quiz-q strong {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 0.94rem;
+      }
+      .quiz-opts {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .opt {
+        border: 1px solid var(--paper-line);
+        background: #fff;
+        border-radius: 8px;
+        padding: 6px 13px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.15s;
+      }
+      .opt:hover {
+        border-color: var(--sky);
+      }
+      .opt.correct {
+        background: var(--teal-soft);
+        border-color: var(--teal);
+        color: var(--teal);
+      }
+      .opt.wrong {
+        background: var(--rose-soft);
+        border-color: var(--rose);
+        color: var(--rose);
+      }
+      blockquote.blog {
+        margin: 0;
+        padding: 14px 18px;
+        border-left: 4px solid var(--teal);
+        background: var(--teal-soft);
+        border-radius: 0 12px 12px 0;
+        font-family: "Fraunces", serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        font-weight: 500;
+      }
+      .table-simple {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+      }
+      .table-simple th {
+        text-align: left;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-soft);
+        padding: 6px 8px;
+        border-bottom: 2px solid var(--paper-line);
+      }
+      .table-simple td {
+        padding: 8px 8px;
+        border-bottom: 1px solid var(--paper-line);
+      }
+      .page-chip {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.68rem;
+        font-weight: 600;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 6px;
+        padding: 2px 7px;
+        margin-left: 6px;
+      }
+      .map-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--paper-line);
+        margin-bottom: 8px;
+        background: var(--paper);
+      }
+      .map-row.focus {
+        background: var(--sky-soft);
+        border-color: var(--sky);
+      }
+      .map-row .lesson {
+        font-weight: 700;
+        font-size: 0.9rem;
+        min-width: 150px;
+      }
+      .map-row .desc {
+        font-size: 0.86rem;
+        color: var(--ink-soft);
+        flex: 1;
+      }
+      .map-row .pg {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        background: #fff;
+        border: 1px solid var(--paper-line);
+        border-radius: 6px;
+        padding: 3px 8px;
+        white-space: nowrap;
+      }
+      .cast {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .cast .who {
+        background: #fff;
+        border: 1px solid var(--paper-line);
+        border-radius: 12px;
+        padding: 8px 12px;
+        font-size: 0.82rem;
+        min-width: 150px;
+      }
+      .cast .who strong {
+        display: block;
+        font-size: 0.86rem;
+      }
+
+      /* nav controls */
+      .nav-ctrl {
+        position: fixed;
+        bottom: 22px;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+      .nav-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--ink);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+        transition: 0.15s;
+      }
+      .nav-btn:hover {
+        background: #0f1c36;
+      }
+      .nav-btn:disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+      .dots {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--paper-line);
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .dot.active {
+        width: 20px;
+        border-radius: 5px;
+        background: var(--ink);
+      }
+      .counter {
+        position: fixed;
+        bottom: 26px;
+        right: 26px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.78rem;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- WHITEBOARD ---------- */
+      #whiteboard {
+        position: fixed;
+        inset: 0;
+        background: var(--wb-bg);
+        display: none;
+        flex-direction: column;
+        padding-top: 60px;
+      }
+      #whiteboard.active {
+        display: flex;
+      }
+      .wb-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 14px 26px;
+        background: #fff;
+        border-bottom: 1px solid #dfe4ec;
+      }
+      .wb-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: var(--wb-bg);
+        border-radius: 10px;
+      }
+      .wb-group span.lbl {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #7d8aa0;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-right: 4px;
+      }
+      .swatch {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+      .swatch.active {
+        border-color: #1e2a3d;
+      }
+      .size-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        border: 1px solid #dfe4ec;
+        background: #fff;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+      }
+      .size-btn.active {
+        background: var(--wb-ink);
+        color: #fff;
+        border-color: var(--wb-ink);
+      }
+      .wb-spacer {
+        flex: 1;
+      }
+      #board-wrap {
+        flex: 1;
+        padding: 26px;
+        overflow: auto;
+      }
+      #board {
+        max-width: 1100px;
+        margin: 0 auto;
+        min-height: 100%;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 56px 64px;
+        font-family: "Fraunces", serif;
+        font-weight: 500;
+        color: var(--wb-ink);
+        line-height: 1.5;
+        outline: none;
+      }
+      #board:empty::before {
+        content: "Start writing here…";
+        color: #aab3c2;
+      }
+      .fs-s {
+        font-size: 1.4rem;
+      }
+      .fs-m {
+        font-size: 1.9rem;
+      }
+      .fs-l {
+        font-size: 2.5rem;
+      }
+      .fs-xl {
+        font-size: 3.2rem;
+      }
+
+      @media (max-width: 900px) {
+        .cols,
+        .cols.three {
+          grid-template-columns: 1fr;
+        }
+        .slide {
+          padding: 30px 22px;
+        }
+        .slide h2 {
+          font-size: 1.4rem;
+        }
+        .viewport {
+          height: 82vh;
+        }
+        .section-nav {
+          padding: 8px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="brand">
+        <div class="tag">L2</div>
+        <div class="txt">
+          <strong>Link It! 2 — Unit 1: Making Plans</strong>
+          <span>Week 2 · Saturday, July 18, 2026</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="btn" onclick="showDeck()">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="4" width="18" height="14" rx="2" />
+            <path d="M8 21h8M12 18v3" />
+          </svg>
+          Class
+        </button>
+        <button class="btn primary" onclick="showBoard()">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+          </svg>
+          Digital Whiteboard
+        </button>
+      </div>
+    </div>
+
+    <div class="section-nav" id="sectionNav">
+      <div class="sec-pill map" onclick="jumpTo('map')">
+        Unit Map · pp.10–21
+      </div>
+      <div class="sec-pill vocab" onclick="jumpTo('vocab')">
+        Vocabulary · p.12
+      </div>
+      <div class="sec-pill grammar" onclick="jumpTo('grammar')">
+        Grammar · p.13
+      </div>
+      <div class="sec-pill reading" onclick="jumpTo('reading')">
+        Reading · p.18
+      </div>
+      <div class="sec-pill global" onclick="jumpTo('global')">
+        Global Skills · p.20
+      </div>
+      <div class="sec-pill preview" onclick="jumpTo('preview')">Coming Up</div>
+    </div>
+
+    <!-- ================= SLIDE DECK ================= -->
+    <div id="deck">
+      <div class="viewport" id="viewport">
+        <!-- 0 COVER -->
+        <section class="slide cat-start active" data-section="start">
+          <span class="tab">Start</span><span class="perf"></span>
+          <div class="kicker accent">Link It! 2nd Edition · Unit 1</div>
+          <h2 class="display" style="font-size: 2.3rem">
+            Making Plans — Week 2
+          </h2>
+          <p class="sub">
+            From last week's weather vocabulary to real communication: simple
+            present vs. present progressive, and reading a travel blog like a
+            strategic reader.
+          </p>
+          <div class="slide-body">
+            <div class="cols">
+              <div class="box">
+                <h4>Today's objectives</h4>
+                <ul class="clean">
+                  <li>
+                    Warm up with a quick review of
+                    <strong>Presentation</strong> (p.10–11) and
+                    <strong>Vocabulary: The Weather</strong> (p.12).
+                  </li>
+                  <li>
+                    Contrast the <strong>simple present</strong> and the
+                    <strong>present progressive</strong> (p.13).
+                  </li>
+                  <li>
+                    Apply the reading strategy
+                    <em>using the introduction</em> to a blog about a trip
+                    (p.18).
+                  </li>
+                  <li>
+                    Preview where Unit 1 goes next, then move to live practice
+                    on the digital whiteboard.
+                  </li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Lesson route</h4>
+                <ol class="clean" style="padding-left: 1.1rem">
+                  <li>Vocabulary review (5 min)</li>
+                  <li>Grammar — presentation (10 min)</li>
+                  <li>Grammar — practice (10 min)</li>
+                  <li>Reading — strategy + enrichment (12 min)</li>
+                  <li>Global Skills preview + wrap-up (3 min)</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 1 UNIT MAP -->
+        <section class="slide cat-map" data-section="map">
+          <span class="tab">Unit Map</span><span class="perf"></span>
+          <div class="kicker accent">Student Book pp.10–21</div>
+          <h2>Where we are in Unit 1</h2>
+          <p class="sub">
+            Every lesson in "Making Plans" at a glance — today's focus is
+            highlighted.
+          </p>
+          <div class="slide-body">
+            <div class="map-row">
+              <div class="lesson">Presentation</div>
+              <div class="desc">
+                Caleb, Peyton, Valeria, Aiden and Layla plan a rainy-day picnic
+                and read about a school "go green" competition.
+              </div>
+              <div class="pg">p.10–11</div>
+            </div>
+            <div class="map-row">
+              <div class="lesson">Vocabulary</div>
+              <div class="desc">
+                The weather — symbols, the World Weather chart, and temperatures
+                around the globe.
+              </div>
+              <div class="pg">p.12</div>
+            </div>
+            <div class="map-row focus">
+              <div class="lesson">Grammar ①</div>
+              <div class="desc">
+                Simple present vs. present progressive — today's focus.
+              </div>
+              <div class="pg">p.13</div>
+            </div>
+            <div class="map-row">
+              <div class="lesson">Speaking</div>
+              <div class="desc">
+                Inviting a friend and making arrangements — coming in Week 4.
+              </div>
+              <div class="pg">p.14</div>
+            </div>
+            <div class="map-row">
+              <div class="lesson">Grammar ②</div>
+              <div class="desc">
+                Present progressive for future plans — coming in Week 3.
+              </div>
+              <div class="pg">p.15</div>
+            </div>
+            <div class="map-row">
+              <div class="lesson">Listening</div>
+              <div class="desc">
+                Santiago's and Yuki's weekend plans — coming in Week 3.
+              </div>
+              <div class="pg">p.16–17</div>
+            </div>
+            <div class="map-row focus">
+              <div class="lesson">Reading</div>
+              <div class="desc">
+                Sam's blog post about a trip to China — today's focus.
+              </div>
+              <div class="pg">p.18</div>
+            </div>
+            <div class="map-row">
+              <div class="lesson">Writing</div>
+              <div class="desc">
+                Alma's blog as a model for writing about a trip — coming in Week
+                4.
+              </div>
+              <div class="pg">p.19</div>
+            </div>
+            <div class="map-row">
+              <div class="lesson">Global Skills</div>
+              <div class="desc">
+                Communication & collaboration — making plans that work for
+                everyone.
+              </div>
+              <div class="pg">p.20</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2 VOCAB REVIEW -->
+        <section class="slide cat-vocab" data-section="vocab">
+          <span class="tab">Vocabulary · Review</span><span class="perf"></span>
+          <div class="kicker accent">
+            Presentation (p.10–11) + The Weather (p.12)
+          </div>
+          <h2>Quick rewind before we move on</h2>
+          <p class="sub">
+            Caleb, Peyton, Valeria, Aiden and Layla were stuck inside on a rainy
+            day — that's exactly why we learned weather words last week.
+          </p>
+          <div class="slide-body">
+            <div
+              class="grid3"
+              style="
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 10px;
+                margin-bottom: 16px;
+              "
+            >
+              <div class="weather-item">
+                <span class="ico">☀️</span><span class="word">sunny</span>
+              </div>
+              <div class="weather-item">
+                <span class="ico">☁️</span><span class="word">cloudy</span>
+              </div>
+              <div class="weather-item">
+                <span class="ico">🌧️</span><span class="word">rainy</span>
+              </div>
+              <div class="weather-item">
+                <span class="ico">💨</span><span class="word">windy</span>
+              </div>
+              <div class="weather-item">
+                <span class="ico">❄️</span><span class="word">snowy</span>
+              </div>
+              <div class="weather-item">
+                <span class="ico">🌫️</span><span class="word">foggy</span>
+              </div>
+            </div>
+            <div class="cols">
+              <div class="box">
+                <h4>Real English recap (p.11)</h4>
+                <p>
+                  From Peyton and friends' dialogue: expressions like
+                  <strong>"What a bummer!"</strong> (bad luck),
+                  <strong>"Get out of here!"</strong> (surprise), and
+                  <strong>"You know what?"</strong> (realizing something). Ask
+                  two students to reuse one phrase in a new mini-dialogue.
+                </p>
+              </div>
+              <div class="box">
+                <h4>World Weather chart (p.12)</h4>
+                <p>
+                  Remember the global chart comparing <strong>Delhi</strong> and
+                  <strong>Sydney</strong> (hot) with
+                  <strong>Calgary</strong> and <strong>Chicago</strong> (cold).
+                  Ask: <em>"What's the weather like in Calgary today?"</em>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3 VOCAB QUIZ + ENRICHMENT -->
+        <section class="slide cat-vocab" data-section="vocab">
+          <span class="tab">Vocabulary · Quiz</span><span class="perf"></span>
+          <div class="kicker accent">90-second warm-up</div>
+          <h2>Lightning round</h2>
+          <p class="sub">
+            Project this and answer out loud before we move to grammar.
+          </p>
+          <div class="slide-body">
+            <div class="quiz-q">
+              <strong
+                >1. It's 0°C and there's ice on the street. It's
+                probably…</strong
+              >
+              <div class="quiz-opts">
+                <div class="opt" onclick="markOpt(this, true)">snowy</div>
+                <div class="opt" onclick="markOpt(this, false)">sunny</div>
+                <div class="opt" onclick="markOpt(this, false)">windy</div>
+              </div>
+            </div>
+            <div class="quiz-q">
+              <strong
+                >2. "It's 95°F in Delhi today!" How does that weather
+                feel?</strong
+              >
+              <div class="quiz-opts">
+                <div class="opt" onclick="markOpt(this, false)">freezing</div>
+                <div class="opt" onclick="markOpt(this, true)">very hot</div>
+                <div class="opt" onclick="markOpt(this, false)">mild</div>
+              </div>
+            </div>
+            <div class="box" style="margin-top: 6px">
+              <h4>Bonus — real-world idioms (enrichment)</h4>
+              <p>
+                <strong>"under the weather"</strong> = feeling a little sick.
+                <strong>"It's raining cats and dogs"</strong> = raining very
+                heavily. Native speakers use these often — try one in a sentence
+                about yourself.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4 GRAMMAR INTRO -->
+        <section class="slide cat-grammar" data-section="grammar">
+          <span class="tab">Grammar</span><span class="perf"></span>
+          <div class="kicker accent">
+            Simple present vs. present progressive — p.13
+          </div>
+          <h2>Habit, or happening right now?</h2>
+          <p class="sub">
+            Same idea from the Think and Look boxes on p.13: the situation and
+            the time expression tell you which tense to use.
+          </p>
+          <div class="slide-body">
+            <table class="table-simple" style="margin-bottom: 14px">
+              <tr>
+                <th>Use</th>
+                <th>Simple present</th>
+                <th>Present progressive</th>
+              </tr>
+              <tr>
+                <td>Function</td>
+                <td>Habits, routines, general facts</td>
+                <td>Actions happening now / near-future plans</td>
+              </tr>
+              <tr>
+                <td>Form</td>
+                <td>subject + verb (+s in 3rd person)</td>
+                <td>subject + am/is/are + verb-ing</td>
+              </tr>
+              <tr>
+                <td>Signal words</td>
+                <td>always, usually, every day, on Saturdays</td>
+                <td>now, right now, at the moment, Look!</td>
+              </tr>
+            </table>
+            <div class="cols">
+              <div class="box">
+                <h4>Habit — tied to our story</h4>
+                <p class="example">
+                  <span class="form habit">checks</span> "Peyton usually
+                  <strong>checks</strong> the weather forecast before school."
+                </p>
+              </div>
+              <div class="box">
+                <h4>Right now — tied to our story</h4>
+                <p class="example">
+                  <span class="form now">is reading</span> "Right now, Peyton
+                  <strong>is reading</strong> an email about the school
+                  competition."
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5 GRAMMAR PRACTICE -->
+        <section class="slide cat-grammar" data-section="grammar">
+          <span class="tab">Grammar · Practice</span><span class="perf"></span>
+          <div class="kicker accent">
+            Common errors — enrichment beyond the book
+          </div>
+          <h2>Watch out for these three</h2>
+          <p class="sub">
+            The most frequent slips students make with these two tenses.
+          </p>
+          <div class="slide-body">
+            <div class="cols wide-left">
+              <div class="box">
+                <h4>Typical mistakes</h4>
+                <ul class="clean">
+                  <li>
+                    Forgetting <strong>-s</strong> in 3rd person:
+                    <em>"She go"</em> → <strong>She goes</strong>.
+                  </li>
+                  <li>
+                    Dropping <strong>be</strong>: <em>"They watching TV"</em> →
+                    <strong>They are watching TV</strong>.
+                  </li>
+                  <li>
+                    Using -ing with state verbs: <em>"I'm knowing"</em> →
+                    <strong>I know</strong>. Verbs like
+                    <em>know, like, want, believe</em> almost never take -ing.
+                  </li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Signal words to underline</h4>
+                <div class="pill-row">
+                  <span class="pill">always</span
+                  ><span class="pill">usually</span
+                  ><span class="pill">every day</span>
+                  <span class="pill">now</span
+                  ><span class="pill">right now</span
+                  ><span class="pill">at the moment</span>
+                  <span class="pill">Look!</span
+                  ><span class="pill">Listen!</span>
+                </div>
+                <p style="margin-top: 10px">
+                  Pair practice: one student says an action with
+                  <em>"right now"</em>; the partner reframes it as a habit using
+                  <em>"usually"</em>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6 READING STRATEGY -->
+        <section class="slide cat-reading" data-section="reading">
+          <span class="tab">Reading</span><span class="perf"></span>
+          <div class="kicker accent">
+            Skill focus: using the introduction — p.18
+          </div>
+          <h2>Predict before you read</h2>
+          <p class="sub">
+            The book's key strategy: the introduction of a travel blog signals
+            the topic, the place, and the tone of the whole post.
+          </p>
+          <div class="slide-body">
+            <div class="box" style="margin-bottom: 14px">
+              <h4>How to apply it</h4>
+              <ul class="clean">
+                <li>
+                  Read only the first line or two before reading the full text.
+                </li>
+                <li>
+                  Ask: who is writing? Where are they? What will the reader
+                  learn?
+                </li>
+                <li>
+                  Use those clues to predict vocabulary and content before
+                  reading in detail.
+                </li>
+              </ul>
+            </div>
+            <div class="box">
+              <h4>From the book: Sam's blog (p.18)</h4>
+              <p>
+                Sam writes a blog post about a trip to China around
+                <strong>February 9th–10th</strong>, describing the Spring
+                Festival at Shanghai Botanical Garden, a visit to Shanghai
+                Disney Resort, traditional Chinese clothing, Lion Dances, and a
+                New Year meal of rice cakes, fish, and spring rolls. The "Check
+                it out" box also introduces new vocabulary students meet in
+                context.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7 READING ENRICHMENT -->
+        <section class="slide cat-reading" data-section="reading">
+          <span class="tab">Reading · Enrichment</span
+          ><span class="perf"></span>
+          <div class="kicker accent">Same strategy, a new example</div>
+          <h2>Try the strategy on a new blog</h2>
+          <p class="sub">
+            An original introduction (not from the book) so students practice
+            the same skill on unfamiliar text.
+          </p>
+          <div class="slide-body">
+            <blockquote class="blog">
+              "Hi everyone! I'm writing this from a small café in Kyoto, and
+              right now the cherry blossoms are falling outside the window like
+              pink snow. This week I'm exploring temples, trying street food,
+              and learning three new Japanese words a day…"
+            </blockquote>
+            <div class="cols" style="margin-top: 14px">
+              <div class="box">
+                <h4>Ask the class</h4>
+                <p>
+                  Where is the writer? Which tense describes what's happening
+                  right now? What do you expect to read next?
+                </p>
+              </div>
+              <div class="box">
+                <h4>Looking ahead to Writing (p.19)</h4>
+                <p>
+                  In Week 4, students will study <strong>Alma's blog</strong> as
+                  a model before writing their own two-paragraph post about a
+                  trip — the same introduction strategy will help them plan it.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8 GLOBAL SKILLS -->
+        <section class="slide cat-global" data-section="global">
+          <span class="tab">Global Skills</span><span class="perf"></span>
+          <div class="kicker accent">Communication & collaboration — p.20</div>
+          <h2>Plans that work for everyone</h2>
+          <p class="sub">
+            A preview of the unit's Global Skills focus, connected to today's
+            grammar.
+          </p>
+          <div class="slide-body">
+            <div class="cols">
+              <div class="box">
+                <h4>Discussion prompt</h4>
+                <p>
+                  In groups, students describe their usual weekend routine
+                  (simple present) and negotiate one activity they could all do
+                  together this weekend (present progressive for a shared plan).
+                </p>
+              </div>
+              <div class="box">
+                <h4>Why it matters</h4>
+                <p>
+                  Making a plan that works for everyone means listening to
+                  routines that differ (simple present) and agreeing on one
+                  shared action (present progressive) — the exact grammar
+                  contrast from today's lesson, used for real collaboration.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9 COMING UP -->
+        <section class="slide cat-preview" data-section="preview">
+          <span class="tab">Coming Up</span><span class="perf"></span>
+          <div class="kicker accent">Weeks 3 & 4</div>
+          <h2>Where Unit 1 goes next</h2>
+          <p class="sub">
+            A quick look ahead so today's grammar and reading connect to what's
+            coming.
+          </p>
+          <div class="slide-body">
+            <div class="cols">
+              <div class="box">
+                <h4>Week 3 · Sat, July 25</h4>
+                <ul class="clean">
+                  <li>
+                    <strong>Grammar:</strong> present progressive for future
+                    plans (p.15).
+                  </li>
+                  <li>
+                    <strong>Listening:</strong> Santiago's and Yuki's weekend
+                    plans (p.16–17).
+                  </li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Week 4 · Sat, Aug 1</h4>
+                <ul class="clean">
+                  <li>
+                    <strong>Speaking:</strong> inviting a friend and making
+                    arrangements (p.14).
+                  </li>
+                  <li>
+                    <strong>Writing:</strong> a two-paragraph blog about a trip,
+                    modeled on Alma's post (p.19).
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10 BRIDGE TO WHITEBOARD -->
+        <section class="slide cat-start" data-section="preview">
+          <span class="tab">Live Practice</span><span class="perf"></span>
+          <div class="kicker accent">Hands-on time</div>
+          <h2>Let's move to the digital whiteboard</h2>
+          <p class="sub">
+            Use the "Digital Whiteboard" button in the top bar to write live in
+            front of the class.
+          </p>
+          <div class="slide-body">
+            <div class="box">
+              <h4>How to use it</h4>
+              <ul class="clean">
+                <li>
+                  Ask students to dictate sentences in simple present and
+                  present progressive — write them on the board.
+                </li>
+                <li>
+                  Underline the signal words together (now, usually, every
+                  day…).
+                </li>
+                <li>
+                  Take a screenshot of the board at the end if you want to keep
+                  a record of the class.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top: 16px">
+            <button class="btn primary" onclick="showBoard()">
+              Open the digital whiteboard →
+            </button>
+          </div>
+        </section>
+
+        <!-- 11 CLOSING -->
+        <section class="slide cat-start" data-section="preview">
+          <span class="tab">Wrap-up</span><span class="perf"></span>
+          <div class="kicker accent">End of Week 2</div>
+          <h2>Summary and homework</h2>
+          <p class="sub">
+            Next stop: Saturday, July 25 — present progressive for the future
+            and a listening lesson about weekend plans.
+          </p>
+          <div class="slide-body">
+            <div class="cols">
+              <div class="box">
+                <h4>Today we covered</h4>
+                <ul class="clean">
+                  <li>
+                    A quick review of the weather vocabulary and Real English
+                    phrases from Week 1.
+                  </li>
+                  <li>
+                    Simple present vs. present progressive, with common errors
+                    to avoid.
+                  </li>
+                  <li>
+                    The reading strategy of using the introduction, applied to
+                    Sam's blog and a new example.
+                  </li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Suggested homework</h4>
+                <p>
+                  Write 4 sentences about your weekly routine (simple present)
+                  and 2 sentences about something you are doing "this week"
+                  (present progressive). Bring them to review next Saturday.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="nav-ctrl">
+      <button
+        class="nav-btn"
+        id="prevBtn"
+        onclick="go(-1)"
+        aria-label="Previous"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <div class="dots" id="dots"></div>
+      <button class="nav-btn" id="nextBtn" onclick="go(1)" aria-label="Next">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+        >
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+    <div class="counter" id="counter">1 / 12</div>
+
+    <!-- ================= WHITEBOARD ================= -->
+    <div id="whiteboard">
+      <div class="wb-toolbar">
+        <div class="wb-group">
+          <span class="lbl">Color</span>
+          <div
+            class="swatch active"
+            style="background: #1e2a3d"
+            onclick="setColor('#1e2a3d', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #3b6fa0"
+            onclick="setColor('#3b6fa0', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #1f7a6c"
+            onclick="setColor('#1f7a6c', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #a8445c"
+            onclick="setColor('#a8445c', this)"
+          ></div>
+          <div
+            class="swatch"
+            style="background: #c8932f"
+            onclick="setColor('#c8932f', this)"
+          ></div>
+        </div>
+        <div class="wb-group">
+          <span class="lbl">Size</span>
+          <button class="size-btn" onclick="setSize('fs-s', this)">S</button>
+          <button class="size-btn active" onclick="setSize('fs-m', this)">
+            M
+          </button>
+          <button class="size-btn" onclick="setSize('fs-l', this)">L</button>
+          <button class="size-btn" onclick="setSize('fs-xl', this)">XL</button>
+        </div>
+        <div class="wb-spacer"></div>
+        <button class="btn" onclick="clearBoard()">Clear all</button>
+        <button class="btn primary" onclick="showDeck()">
+          ← Back to class
+        </button>
+      </div>
+      <div id="board-wrap">
+        <div
+          id="board"
+          class="fs-m"
+          contenteditable="true"
+          spellcheck="false"
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const dotsWrap = document.getElementById("dots");
+      let current = 0;
+
+      slides.forEach((s, i) => {
+        const d = document.createElement("div");
+        d.className = "dot" + (i === 0 ? " active" : "");
+        d.onclick = () => setSlide(i);
+        dotsWrap.appendChild(d);
+      });
+
+      function setSlide(i) {
+        if (i < 0 || i >= slides.length) return;
+        slides[current].classList.remove("active");
+        current = i;
+        slides[current].classList.add("active");
+        document
+          .querySelectorAll(".dot")
+          .forEach((d, idx) => d.classList.toggle("active", idx === current));
+        document.getElementById("counter").textContent =
+          current + 1 + " / " + slides.length;
+        document.getElementById("prevBtn").disabled = current === 0;
+        document.getElementById("nextBtn").disabled =
+          current === slides.length - 1;
+      }
+      function go(dir) {
+        setSlide(current + dir);
+      }
+      function jumpTo(section) {
+        for (let i = 0; i < slides.length; i++) {
+          if (slides[i].dataset.section === section) {
+            setSlide(i);
+            break;
+          }
+        }
+      }
+
+      document.addEventListener("keydown", (e) => {
+        const boardActive = document
+          .getElementById("whiteboard")
+          .classList.contains("active");
+        if (boardActive) return;
+        if (e.key === "ArrowRight") go(1);
+        if (e.key === "ArrowLeft") go(-1);
+      });
+
+      function markOpt(el, isCorrect) {
+        const opts = el.parentElement.querySelectorAll(".opt");
+        opts.forEach((o) => {
+          o.classList.remove("correct", "wrong");
+        });
+        el.classList.add(isCorrect ? "correct" : "wrong");
+      }
+
+      function showBoard() {
+        document.getElementById("whiteboard").classList.add("active");
+        document.getElementById("deck").style.display = "none";
+        document.getElementById("sectionNav").style.display = "none";
+        document.querySelector(".nav-ctrl").style.display = "none";
+        document.getElementById("counter").style.display = "none";
+        setTimeout(() => document.getElementById("board").focus(), 50);
+      }
+      function showDeck() {
+        document.getElementById("whiteboard").classList.remove("active");
+        document.getElementById("deck").style.display = "flex";
+        document.getElementById("sectionNav").style.display = "flex";
+        document.querySelector(".nav-ctrl").style.display = "flex";
+        document.getElementById("counter").style.display = "block";
+      }
+
+      function setColor(c, btn) {
+        document.getElementById("board").style.color = c;
+        document
+          .querySelectorAll(".swatch")
+          .forEach((s) => s.classList.remove("active"));
+        btn.classList.add("active");
+      }
+      function setSize(cls, btn) {
+        const board = document.getElementById("board");
+        board.classList.remove("fs-s", "fs-m", "fs-l", "fs-xl");
+        board.classList.add(cls);
+        document
+          .querySelectorAll(".size-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+      function clearBoard() {
+        if (confirm("Clear all content from the whiteboard?")) {
+          document.getElementById("board").innerHTML = "";
+          document.getElementById("board").focus();
+        }
+      }
+
+      setSlide(0);
+    </script>
+  </body>
+</html>
