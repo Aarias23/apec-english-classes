@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive classroom deck for Link It! 2 Units 1 and 2.">
+  <title>Classroom · Ruta al Midterm</title><link rel="stylesheet" href="assets/site.css">
+</head>
+<body class="classroom-page">
+  <header class="classroom-bar">
+    <a class="mini-brand" href="course-hub.html"><span>LI</span> Ruta al Midterm</a>
+    <div class="class-meta"><strong id="lesson-label">Class 01</strong><span id="lesson-date">July 11</span><span id="page-range">SB 10–15</span></div>
+    <div class="class-tools"><button id="timer-open" class="tool-button" type="button" aria-label="Open timer">◷ <span>Timer</span></button><button id="teacher-toggle" class="tool-button" type="button" aria-pressed="false">✦ <span>Teacher mode</span></button><button id="fullscreen-button" class="tool-button" type="button">⛶ <span>Full screen</span></button></div>
+  </header>
+  <main class="deck-shell">
+    <aside class="deck-rail" aria-label="Slide navigation"><button id="rail-toggle" class="rail-toggle" type="button" aria-label="Collapse slide list">☰</button><div id="slide-list" class="slide-list"></div></aside>
+    <section class="stage-wrap"><div class="progress-track"><span id="progress-bar"></span></div><article id="slide-stage" class="slide-stage" aria-live="polite"></article><div class="deck-controls"><button id="prev-slide" class="round-button" type="button" aria-label="Previous slide">←</button><span id="slide-count">01 / 12</span><button id="next-slide" class="round-button dark" type="button" aria-label="Next slide">→</button></div></section>
+    <aside id="teacher-panel" class="teacher-panel" aria-hidden="true"><div class="panel-heading"><div><small>PRIVATE VIEW</small><strong>Teacher Guide</strong></div><button id="teacher-close" type="button" aria-label="Close teacher guide">×</button></div><div id="teacher-content" class="teacher-content"></div></aside>
+  </main>
+  <dialog id="timer-dialog" class="timer-dialog"><form method="dialog" class="dialog-close"><button aria-label="Close timer">×</button></form><p class="eyebrow">CLASSROOM TIMER</p><div id="timer-display" class="timer-display">05:00</div><div class="timer-presets"><button data-minutes="2" type="button">2 min</button><button data-minutes="5" type="button">5 min</button><button data-minutes="10" type="button">10 min</button><button data-minutes="15" type="button">15 min</button></div><div class="timer-actions"><button id="timer-start" class="button primary" type="button">Start</button><button id="timer-reset" class="button ghost" type="button">Reset</button></div></dialog>
+  <script src="assets/lesson-data.js"></script><script src="assets/classroom.js"></script>
+</body>
+</html>
