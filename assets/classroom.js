@@ -1,7 +1,8 @@
 (function () {
   "use strict";
   var params = new URLSearchParams(window.location.search);
-  var lessonId = Math.min(4, Math.max(1, Number(params.get("lesson")) || 1));
+  var defaultLesson = Number(document.documentElement.getAttribute("data-lesson")) || 1;
+  var lessonId = Math.min(4, Math.max(1, Number(params.get("lesson")) || defaultLesson));
   var lesson = window.COURSE_LESSONS.find(function (item) { return item.id === lessonId; });
   var current = Math.min(lesson.slides.length - 1, Math.max(0, Number(params.get("slide")) || 0));
   var stage = document.getElementById("slide-stage");
