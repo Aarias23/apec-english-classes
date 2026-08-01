@@ -311,11 +311,11 @@ window.COURSE_LESSONS = [
         time: "0–10 MIN",
         lead: "Our final stop turns past questions into an interview, an interpretation and a written recommendation.",
         body: "<div class=\"slide-tags\"><span>Questions with was/were</span><span>Past of have</span><span>Photo listening</span><span>Vacation review</span><span>Well-being</span></div>",
-        teacher: { purpose: "Frame the final class as an integrated performance before the midterm.", say: "Today we complete Unit 2 and identify exactly what to review for August 8.", notes: ["Keep pace: model briefly, maximize learner production.", "Preview the final review and readiness check."], answer: "Final evidence: oral interview + 80–100 word review." }
+        teacher: { purpose: "Frame the final class as an integrated performance before the midterm.", say: "Today we complete Unit 2 and identify exactly what to review for August 8.", notes: ["Keep pace: model briefly, maximize learner production.", "Preview Break 1 (108-118) and Break 2 (185-195), then the final review."], answer: "Final evidence: oral interview + 80–100 word review." }
       },
       {
         title: "Turn statements into questions",
-        kicker: "RETRIEVAL · SB 28",
+        kicker: "GRAMMAR - SB 28 EX 1-2",
         time: "10–35 MIN",
         lead: "Move was/were before the subject. Keep the rest of the sentence.",
         body: "<div class=\"sentence-stack\"><div class=\"sentence\">You were at home. → <b>Were you at home?</b></div><div class=\"sentence\">She was tired. → <b>Was she tired?</b></div><div class=\"sentence\">They were in Samaná. → <b>Where were they?</b></div></div><div class=\"prompt-box\"><strong>Short answers:</strong> Yes, I was. / No, I wasn't. · Yes, they were. / No, they weren't.</div>",
@@ -323,7 +323,7 @@ window.COURSE_LESSONS = [
       },
       {
         title: "When you were eight",
-        kicker: "PERSONALIZED GRAMMAR · SB 28",
+        kicker: "SPEAKING - SB 28 EX 3-4",
         time: "35–60 MIN",
         lead: "Interview a partner, then report one memorable answer.",
         body: "<div class=\"content-grid\"><div class=\"content-card\"><small>WHO?</small><p>Who was your favorite teacher?</p></div><div class=\"content-card\"><small>WHAT?</small><p>What was your favorite TV show?</p></div><div class=\"content-card\"><small>WHERE?</small><p>Where was your home?</p></div><div class=\"content-card\"><small>WERE YOU…?</small><p>Were you shy or outgoing?</p></div></div>",
@@ -331,7 +331,7 @@ window.COURSE_LESSONS = [
       },
       {
         title: "The past of have",
-        kicker: "GRAMMAR · SB 28",
+        kicker: "GRAMMAR - SB 28 THINK + EX 5-6",
         time: "60–82 MIN",
         lead: "Had is the same for every subject.",
         body: "<div class=\"example-grid\"><div class=\"example-card\"><h3>PAST</h3><p>I <b>had</b> short hair.<br>They <b>had</b> a small camera.</p></div><div class=\"example-card\"><h3>PRESENT</h3><p>I <b>have</b> long hair.<br>She <b>has</b> a new phone.</p></div></div><div class=\"prompt-box\">At age eight, I was ___. I had ___. My family had ___.</div>",
@@ -339,56 +339,56 @@ window.COURSE_LESSONS = [
       },
       {
         title: "Predict from the picture",
-        kicker: "LISTENING · SB 29",
+        kicker: "LISTENING - SB 29 EX 1-4 - TRACKS 022-024",
         time: "82–108 MIN",
         lead: "Before audio, images help you predict place, people, activities and useful vocabulary.",
-        body: "<div class=\"goal-grid\"><div class=\"goal-card\"><small>PLACE</small><p>beach, mountains, city?</p></div><div class=\"goal-card\"><small>PEOPLE</small><p>family, friends, guide?</p></div><div class=\"goal-card\"><small>DETAILS</small><p>weather, clothes, objects?</p></div><div class=\"goal-card\"><small>LANGUAGE</small><p>was, were, had?</p></div></div><div class=\"prompt-box\">First listen: match the photo. Second listen: complete the fact file.</div>",
+        body: "<div class=\"goal-grid\"><div class=\"goal-card\"><small>PLACE</small><p>beach, mountains, city?</p></div><div class=\"goal-card\"><small>PEOPLE</small><p>family, friends, guide?</p></div><div class=\"goal-card\"><small>DETAILS</small><p>weather, clothes, objects?</p></div><div class=\"goal-card\"><small>LANGUAGE</small><p>was, were, had?</p></div></div><div class=\"prompt-box\"><strong>BOOK STOP:</strong> Ex 1 inspect the photos; Ex 2 listen to Track 022; Ex 3 complete the fact file with Track 023; Ex 4 complete the questions with Track 024.</div>",
         teacher: { purpose: "Teach prediction as the listening strategy for p.29.", say: "Prediction prepares your ears; it is not a promise to be correct.", notes: ["Use the three book photos and tracks.", "After fact-file feedback, take the 10-minute break."], answer: "Success is accurate evidence correction, not having every prediction right." }
       },
       {
         title: "Build a vacation interview",
-        kicker: "LISTENING → SPEAKING",
+        kicker: "SPEAKING - SB 29 EX 5-7",
         time: "118–145 MIN",
         lead: "Use a fact file to keep the conversation complete.",
-        body: "<div class=\"prompt-box\"><strong>Vacation fact file</strong><br>Where? ___ · When? ___ · Who with? ___<br>Weather? ___ · People? ___ · Best thing? ___</div><ol class=\"task-steps\"><li>Choose a real or imaginary vacation photo.</li><li>Complete the fact file with keywords.</li><li>Your partner interviews you without seeing all answers.</li><li>Your partner presents your vacation to the class.</li></ol>",
+        body: "<div class=\"prompt-box\"><strong>BOOK STOP - SB 29 Ex 5-7:</strong> complete a fact file, interview a partner, then present.<br><br><strong>Vacation fact file</strong><br>Where? ___ · When? ___ · Who with? ___<br>Weather? ___ · People? ___ · Best thing? ___</div><ol class=\"task-steps\"><li>Choose a real or imaginary vacation photo.</li><li>Complete the fact file with keywords.</li><li>Your partner interviews you without seeing all answers.</li><li>Your partner presents your vacation to the class.</li></ol>",
         teacher: { purpose: "Reproduce the modeled interview from p.29.", say: "Your answers must be detailed enough for your partner to retell.", notes: ["Model correct was/were question forms.", "Monitor for present/past mixing.", "Keep presentations to 30–40 seconds."], answer: "Target: Where were you? Who was with you? What was the weather like? What did you have? (Extension)." }
       },
       {
         title: "What kind of text is this?",
-        kicker: "READING · SB 30",
-        time: "145–170 MIN",
+        kicker: "VOCABULARY + READING - SB 30 CHECK IT OUT + EX 1-2 - TRACK 025",
+        time: "145-165 MIN",
         lead: "Visual clues reveal purpose before close reading.",
-        body: "<div class=\"choice-grid\" data-quiz data-answer=\"3\"><button class=\"choice-button\" data-choice=\"1\">A private diary entry</button><button class=\"choice-button\" data-choice=\"2\">A school rule</button><button class=\"choice-button\" data-choice=\"3\">A vacation advertisement</button><button class=\"choice-button\" data-choice=\"4\">A weather report</button></div><p class=\"quiz-feedback\" aria-live=\"polite\"></p><div class=\"prompt-box\">Clues: company name or logo, persuasive heading, destination images, contact or booking language.</div>",
+        body: "<div class=\"choice-grid\" data-quiz data-answer=\"3\"><button class=\"choice-button\" data-choice=\"1\">A private diary entry</button><button class=\"choice-button\" data-choice=\"2\">A school rule</button><button class=\"choice-button\" data-choice=\"3\">A vacation advertisement</button><button class=\"choice-button\" data-choice=\"4\">A weather report</button></div><p class=\"quiz-feedback\" aria-live=\"polite\"></p><div class=\"prompt-box\"><strong>BOOK STOP:</strong> Check it out - infer vocabulary from context. Ex 1 identify the text type. Ex 2 read/listen to Track 025.<br><br>Clues: company name or logo, persuasive heading, destination images, contact or booking language.</div>",
         teacher: { purpose: "Teach identification of text type using visual clues.", say: "Before details, ask: Who created this and what do they want me to do?", notes: ["Preview Azores, Thailand and Rwanda.", "Students underline key words in questions before scanning."], answer: "Vacation advertisement." }
       },
       {
         title: "Read, compare, choose",
-        kicker: "READING DECISION · SB 30",
-        time: "170–190 MIN",
+        kicker: "READING - SB 30 EX 3-4",
+        time: "165-185 MIN",
         lead: "A recommendation needs evidence, not only preference.",
-        body: "<div class=\"content-grid\"><div class=\"content-card\"><small>AZORES</small><p>islands · volcanoes · whale watching</p></div><div class=\"content-card\"><small>THAILAND</small><p>beaches · temples · hot weather</p></div><div class=\"content-card\"><small>RWANDA</small><p>hills · safari · mountain gorillas</p></div><div class=\"content-card\"><small>YOUR CHOICE</small><p>I would choose ___ because the text says ___.</p></div></div>",
+        body: "<div class=\"content-grid\"><div class=\"content-card\"><small>AZORES</small><p>islands · volcanoes · whale watching</p></div><div class=\"content-card\"><small>THAILAND</small><p>beaches · temples · hot weather</p></div><div class=\"content-card\"><small>RWANDA</small><p>hills · safari · mountain gorillas</p></div><div class=\"content-card\"><small>YOUR CHOICE</small><p>BOOK STOP - Ex 3: answer with text evidence. Ex 4: I would choose ___ because the text says ___.</p></div></div>",
         teacher: { purpose: "Move from comprehension to evidence-based response.", say: "Because I like it is a start. Because the advert says… is evidence.", notes: ["Use the actual book text for exact details.", "Link to lower-impact vacation decisions."], answer: "Any choice is valid when supported by accurate textual evidence." }
       },
       {
         title: "Write a useful review",
-        kicker: "WRITING · SB 31",
-        time: "190–220 MIN",
+        kicker: "WRITING - SB 31 EX 1-3",
+        time: "195-225 MIN",
         lead: "A review describes, evaluates and helps another person decide.",
-        body: "<div class=\"content-grid\"><div class=\"content-card\"><small>CONTEXT</small><p>Where and when were you there?</p></div><div class=\"content-card\"><small>EVIDENCE</small><p>What was good or disappointing?</p></div><div class=\"content-card\"><small>DETAIL</small><p>What were people and places like?</p></div><div class=\"content-card\"><small>VERDICT</small><p>Stars + recommendation</p></div></div><div class=\"prompt-box\">★★★★☆<br>Last July, I was in ___. The people were ___. We had ___. I recommend it because ___.</div>",
-        teacher: { purpose: "Use the model review and idea-generation strategy on p.31.", say: "Every star rating needs language that explains it.", notes: ["5 min notes, 12 min writing, 5 min peer check.", "Target 80–100 words.", "After drafting, take a brief 8–10 minute break."], answer: "Criteria: context, 2 evaluated details, past be/had, verdict, 80–100 words." }
+        body: "<div class=\"content-grid\"><div class=\"content-card\"><small>CONTEXT</small><p>Where and when were you there?</p></div><div class=\"content-card\"><small>EVIDENCE</small><p>What was good or disappointing?</p></div><div class=\"content-card\"><small>DETAIL</small><p>What were people and places like?</p></div><div class=\"content-card\"><small>VERDICT</small><p>Stars + recommendation</p></div></div><div class=\"prompt-box\"><strong>BOOK STOP - SB 31:</strong> Ex 1 analyze Cristina's model; Ex 2 plan; Ex 3 write about 100 words.<br><br>★★★★☆<br>Last July, I was in ___. The people were ___. We had ___. I recommend it because ___.</div>",
+        teacher: { purpose: "Use the model review and idea-generation strategy on p.31.", say: "Every star rating needs language that explains it.", notes: ["5 min notes, 12 min writing, 5 min peer check.", "Target 80–100 words.", "Take Break 2 from minute 185 to 195, then draft and peer-check."], answer: "Criteria: context, 2 evaluated details, past be/had, verdict, 80–100 words." }
       },
       {
-        title: "Well-being is part of the trip",
-        kicker: "GLOBAL SKILLS · SB 32",
-        time: "220–230 MIN",
+        title: "Well-being is part of the trip - SB 32 Ex 1-4",
+        kicker: "GLOBAL SKILLS - SB 32 EX 1-4",
+        time: "225-235 MIN",
         lead: "Vacation posts can create joy or jealousy. We can choose healthy responses.",
         body: "<div class=\"content-grid\"><div class=\"content-card\"><small>NOTICE</small><p>Name the emotion without judging it.</p></div><div class=\"content-card\"><small>RESPOND</small><p>Talk to someone, go offline, move, journal or practice a skill.</p></div></div><div class=\"prompt-box\">I think <strong>staying offline for a while</strong> can help because…</div>",
         teacher: { purpose: "Address emotional self-regulation and well-being in the book sequence.", say: "A feeling is information; a strategy is a choice.", notes: ["Participation may remain general, not personal.", "Pairs suggest two strategies for a fictional student."], answer: "Use I think + -ing to propose a strategy." }
       },
       {
-        title: "Two units. One checkpoint.",
-        kicker: "MY PROGRESS · SB 33",
-        time: "230–240 MIN",
+        title: "My Progress: choose your next target",
+        kicker: "MY PROGRESS - SB 33 EX 3-4",
+        time: "235-240 MIN",
         lead: "Complete the final evidence check, then open the Midterm Lab.",
         body: "<div class=\"exit-grid\"><div><span>U1</span><p>Make a future arrangement using the present progressive.</p></div><div><span>U2</span><p>Ask one past question and describe one person.</p></div><div><span>★</span><p>Give one evidence-based vacation recommendation.</p></div></div><div class=\"prompt-box\"><strong>Before August 8:</strong> Workbook W9–W13, revise both products, and complete the Midterm Readiness Lab from the home page.</div>",
         teacher: { purpose: "Close Unit 2, verify integration and direct targeted exam preparation.", say: "Do not review everything equally. Use today's evidence to choose your weakest area.", notes: ["Mark Class 04 complete.", "Use the Midterm Lab checklist for differentiated homework.", "Celebrate completion of both units one week before the exam."], answer: "Required coverage completed: SB 10–33, Units 1 and 2." }
