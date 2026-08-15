@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive English family tree for Unit 1.">
+  <title>The Rivera Family Tree | English 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="family-tree.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span>E2</span><strong>English 2</strong></a>
+    <div class="lesson-label"><span>UNIT 1 · RESOURCE 1</span><strong>Family Members</strong></div>
+    <a class="back-link" href="index.html?slide=2">← Back to class</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">MEET THE FAMILY</p>
+        <h1>The Rivera <em>Family Tree</em></h1>
+        <p>Explore three generations. Select a person to discover how they are related to <strong>Camila</strong>.</p>
+        <div class="legend" aria-label="Generation color guide">
+          <span><i class="dot grandparents"></i> Grandparents</span>
+          <span><i class="dot parents"></i> Parents & relatives</span>
+          <span><i class="dot children"></i> Children</span>
+        </div>
+      </div>
+      <figure class="family-photo">
+        <img src="assets/rivera-family.png" alt="The nine members of the fictional Rivera family together">
+        <figcaption>A family is made of people and relationships.</figcaption>
+      </figure>
+    </section>
+
+    <section class="tree-section" aria-labelledby="tree-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">THREE GENERATIONS</p><h2 id="tree-title">Who is who?</h2></div>
+        <p>Click or press Enter on any card.</p>
+      </div>
+
+      <div class="family-tree" aria-label="Rivera family tree">
+        <div class="generation generation-one">
+          <span class="generation-tag">1st generation</span>
+          <div class="couple grandparents-line">
+            <button class="person grandparents" data-person="carlos" type="button">
+              <span class="portrait carlos" aria-hidden="true"></span><span class="person-copy"><strong>Carlos</strong><small>grandfather</small></span>
+            </button>
+            <span class="couple-link" aria-label="married to">♥</span>
+            <button class="person grandparents" data-person="elena" type="button">
+              <span class="portrait elena" aria-hidden="true"></span><span class="person-copy"><strong>Elena</strong><small>grandmother</small></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="trunk" aria-hidden="true"><span></span></div>
+
+        <div class="generation generation-two">
+          <span class="generation-tag">2nd generation</span>
+          <div class="branch family-left">
+            <div class="couple">
+              <button class="person parents" data-person="miguel" type="button"><span class="portrait miguel" aria-hidden="true"></span><span class="person-copy"><strong>Miguel</strong><small>father</small></span></button>
+              <span class="couple-link" aria-label="married to">♥</span>
+              <button class="person parents" data-person="sofia" type="button"><span class="portrait sofia" aria-hidden="true"></span><span class="person-copy"><strong>Sofía</strong><small>mother</small></span></button>
+            </div>
+          </div>
+          <div class="sibling-label">Miguel and Lucía are <strong>siblings</strong>.</div>
+          <div class="branch family-right">
+            <div class="couple">
+              <button class="person parents" data-person="lucia" type="button"><span class="portrait lucia" aria-hidden="true"></span><span class="person-copy"><strong>Lucía</strong><small>aunt</small></span></button>
+              <span class="couple-link" aria-label="married to">♥</span>
+              <button class="person parents" data-person="daniel" type="button"><span class="portrait daniel" aria-hidden="true"></span><span class="person-copy"><strong>Daniel</strong><small>uncle</small></span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="children-connectors" aria-hidden="true"><span></span><span></span></div>
+
+        <div class="generation generation-three">
+          <span class="generation-tag">3rd generation</span>
+          <div class="children-group left-children">
+            <button class="person children" data-person="mateo" type="button"><span class="portrait mateo" aria-hidden="true"></span><span class="person-copy"><strong>Mateo</strong><small>brother</small></span></button>
+            <button class="person children focus-person" data-person="camila" type="button"><span class="you-badge">FOCUS</span><span class="portrait camila" aria-hidden="true"></span><span class="person-copy"><strong>Camila</strong><small>daughter</small></span></button>
+          </div>
+          <div class="children-group right-children">
+            <button class="person children" data-person="leo" type="button"><span class="portrait leo" aria-hidden="true"></span><span class="person-copy"><strong>Leo</strong><small>cousin</small></span></button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="relation-panel" id="relation-panel" aria-live="polite">
+        <span class="relation-icon">↗</span>
+        <div><small>RELATIONSHIP TO CAMILA</small><strong id="relation-sentence">Select a family member.</strong><p id="relation-detail">Use the family tree to describe the relationship.</p></div>
+      </aside>
+    </section>
+
+    <section class="practice-section" aria-labelledby="practice-title">
+      <div class="practice-copy"><p class="eyebrow">QUICK PRACTICE</p><h2 id="practice-title">Complete the sentence</h2><p>Choose the correct family word. Your score updates automatically.</p><div class="score"><strong id="score">0</strong><span>/ 5 correct</span></div></div>
+      <div class="quiz" id="quiz">
+        <label>Carlos is Camila’s <select data-answer="grandfather"><option value="">Choose…</option><option>uncle</option><option>grandfather</option><option>father</option></select><span class="result"></span></label>
+        <label>Mateo is Camila’s <select data-answer="brother"><option value="">Choose…</option><option>brother</option><option>cousin</option><option>son</option></select><span class="result"></span></label>
+        <label>Lucía is Camila’s <select data-answer="aunt"><option value="">Choose…</option><option>mother</option><option>sister</option><option>aunt</option></select><span class="result"></span></label>
+        <label>Leo is Camila’s <select data-answer="cousin"><option value="">Choose…</option><option>nephew</option><option>cousin</option><option>brother</option></select><span class="result"></span></label>
+        <label>Miguel and Lucía are <select data-answer="siblings"><option value="">Choose…</option><option>siblings</option><option>parents</option><option>cousins</option></select><span class="result"></span></label>
+      </div>
+    </section>
+
+    <section class="language-box">
+      <div><p class="eyebrow">USEFUL LANGUAGE</p><h2>Talk about the family</h2></div>
+      <div class="sentence-cards"><p><span>01</span><strong>This is my...</strong><small>“This is my grandmother, Elena.”</small></p><p><span>02</span><strong>’s = relationship</strong><small>“Mateo is Camila’s brother.”</small></p><p><span>03</span><strong>They are...</strong><small>“Miguel and Lucía are siblings.”</small></p></div>
+    </section>
+  </main>
+
+  <footer><span>English 2 · Unit 1</span><span>Family vocabulary resource</span></footer>
+  <script src="family-tree.js"></script>
+</body>
+</html>

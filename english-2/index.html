@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive English 2 classroom for Unit 1: people, routines, places, time, and personal information.">
+  <title>English 2 · Unit 1 Classroom</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../course-hub.html" aria-label="Back to course hub">
+      <span class="brand-mark">E2</span>
+      <span><small>INTERACTIVE CLASSROOM</small><strong>English 2</strong></span>
+    </a>
+    <div class="class-meta" aria-label="Lesson information">
+      <strong>Unit 1</strong><span>Everyday English</span><span>5 resources</span>
+    </div>
+    <div class="top-actions">
+      <button class="tool-button" id="board-open" type="button"><span>✎</span> Whiteboard</button>
+      <button class="tool-button" id="timer-open" type="button"><span>◷</span> Timer</button>
+      <button class="tool-button guide-button" id="guide-open" type="button"><span>▣</span> Full guide</button>
+      <button class="tool-button" id="teacher-toggle" type="button" aria-pressed="false"><span>✦</span> Teacher</button>
+      <button class="icon-button" id="fullscreen" type="button" aria-label="Enter full screen">⛶</button>
+    </div>
+  </header>
+
+  <main class="deck-shell">
+    <aside class="slide-rail" aria-label="Slide navigation">
+      <div class="rail-heading"><span>LESSON PATH</span><button id="rail-toggle" type="button" aria-label="Collapse navigation">☰</button></div>
+      <nav id="slide-list" class="slide-list"></nav>
+    </aside>
+    <section class="stage-area">
+      <div class="progress"><span id="progress-bar"></span></div>
+      <article id="slide-stage" class="slide-stage" aria-live="polite"></article>
+      <footer class="deck-controls">
+        <button id="previous" class="nav-button" type="button" aria-label="Previous slide">←</button>
+        <span id="slide-counter">01 / 14</span>
+        <button id="next" class="nav-button primary" type="button" aria-label="Next slide">→</button>
+      </footer>
+    </section>
+    <aside id="teacher-panel" class="teacher-panel" aria-hidden="true">
+      <header><div><small>PRIVATE VIEW</small><strong>Teacher Guide</strong></div><button id="teacher-close" type="button" aria-label="Close teacher guide">×</button></header>
+      <div id="teacher-content" class="teacher-content"></div>
+    </aside>
+  </main>
+
+  <dialog id="timer-dialog" class="timer-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="Close timer">×</button></form>
+    <p class="eyebrow">CLASSROOM TIMER</p>
+    <div id="timer-display" class="timer-display">05:00</div>
+    <div class="timer-presets"><button data-minutes="2">2 min</button><button data-minutes="5">5 min</button><button data-minutes="10">10 min</button><button data-minutes="15">15 min</button></div>
+    <div class="timer-actions"><button id="timer-start" class="button primary">Start</button><button id="timer-reset" class="button">Reset</button></div>
+  </dialog>
+
+  <section id="whiteboard" class="whiteboard" aria-hidden="true" aria-label="Modern digital whiteboard">
+    <header class="board-topbar">
+      <div class="board-title"><span>E2</span><div><small>EXPLAIN ANYTHING</small><strong>Teaching Canvas</strong></div></div>
+      <div class="board-history">
+        <button id="board-undo" type="button" title="Undo (Ctrl+Z)">↶ <span>Undo</span></button>
+        <button id="board-redo" type="button" title="Redo (Ctrl+Shift+Z)">↷ <span>Redo</span></button>
+      </div>
+      <div class="board-actions">
+        <button id="board-export" type="button">⇩ Export</button>
+        <button id="board-clear" type="button">Clear</button>
+        <button id="board-close" class="primary" type="button">Back to class</button>
+      </div>
+    </header>
+    <div class="board-workspace">
+      <aside class="board-toolbar" aria-label="Whiteboard tools">
+        <button class="board-tool active" data-board-tool="pen" type="button" aria-pressed="true"><span>✎</span><small>Pen</small></button>
+        <button class="board-tool" data-board-tool="highlighter" type="button" aria-pressed="false"><span>▰</span><small>Highlight</small></button>
+        <button class="board-tool" data-board-tool="text" type="button" aria-pressed="false"><span>T</span><small>Text</small></button>
+        <button class="board-tool" data-board-tool="note" type="button" aria-pressed="false"><span>▣</span><small>Note</small></button>
+        <button class="board-tool" data-board-tool="eraser" type="button" aria-pressed="false"><span>⌫</span><small>Eraser</small></button>
+        <div class="toolbar-divider"></div>
+        <button class="board-background active" data-board-background="blank" type="button" aria-label="Blank background">□</button>
+        <button class="board-background" data-board-background="grid" type="button" aria-label="Grid background">▦</button>
+        <button class="board-background" data-board-background="lines" type="button" aria-label="Lined background">☰</button>
+      </aside>
+      <div class="board-main">
+        <div class="board-options">
+          <div class="color-options" aria-label="Tool color">
+            <button class="color-swatch active" data-board-color="#17251f" style="--swatch:#17251f" aria-label="Ink"></button>
+            <button class="color-swatch" data-board-color="#2855d9" style="--swatch:#2855d9" aria-label="Blue"></button>
+            <button class="color-swatch" data-board-color="#0c8b73" style="--swatch:#0c8b73" aria-label="Green"></button>
+            <button class="color-swatch" data-board-color="#d33b57" style="--swatch:#d33b57" aria-label="Red"></button>
+            <button class="color-swatch" data-board-color="#f0a51a" style="--swatch:#f0a51a" aria-label="Amber"></button>
+          </div>
+          <div class="size-options" aria-label="Tool size">
+            <button data-board-size="3" data-text-size="26">S</button><button class="active" data-board-size="6" data-text-size="40">M</button><button data-board-size="12" data-text-size="58">L</button>
+          </div>
+          <p id="board-status">Pen · click and drag to draw</p>
+        </div>
+        <div id="board-surface" class="board-surface blank">
+          <canvas id="board-canvas" aria-label="Whiteboard drawing surface"></canvas>
+          <textarea id="board-text-editor" class="board-text-editor" placeholder="Type here…  Ctrl+Enter to place" hidden></textarea>
+          <div class="board-shortcuts"><strong>Shortcuts</strong><span>P Pen</span><span>H Highlight</span><span>T Text</span><span>N Note</span><span>E Eraser</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

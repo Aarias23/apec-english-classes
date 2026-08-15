@@ -1,3 +1,18 @@
 tmp/
 desktop.ini
 .agents/
+
+# Generated site output and package caches
+dist/
+.pnpm-store/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local editor and Office state
+*.code-workspace
+~$*.docx
+
+# Local textbook source (large and not for repository distribution)
+book.pdf
