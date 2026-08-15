@@ -18,14 +18,21 @@ Copy-Item -LiteralPath (Join-Path $projectRoot "midterm-review.html") -Destinati
 $siteAssets = @(
   "site.css",
   "lesson-data.js",
-  "unit2-complete.js",
+  "book-map.js",
+  "learning-components.js",
+  "unit2-enhanced.js",
+  "unit3-content.js",
   "hub.js",
   "classroom.js",
   "review.js"
 )
-
 foreach ($asset in $siteAssets) {
   Copy-Item -LiteralPath (Join-Path $projectRoot "assets\$asset") -Destination $clientAssets -Force
+}
+
+$bookSource = Join-Path $projectRoot "assets\book"
+if (Test-Path -LiteralPath $bookSource) {
+  Copy-Item -LiteralPath $bookSource -Destination $clientAssets -Recurse -Force
 }
 
 Write-Output "Static classroom site built in dist."

@@ -2,8 +2,9 @@
   "use strict";
   var params = new URLSearchParams(window.location.search);
   var defaultLesson = Number(document.documentElement.getAttribute("data-lesson")) || 1;
-  var lessonId = Math.min(4, Math.max(1, Number(params.get("lesson")) || defaultLesson));
-  var lesson = window.COURSE_LESSONS.find(function (item) { return item.id === lessonId; });
+  var maxLessonId = Math.max.apply(null, window.COURSE_LESSONS.map(function (item) { return item.id; }));
+  var lessonId = Math.min(maxLessonId, Math.max(1, Number(params.get("lesson")) || defaultLesson));
+  var lesson = window.COURSE_LESSONS.find(function (item) { return item.id === lessonId; }) || window.COURSE_LESSONS[0];
   var current = Math.min(lesson.slides.length - 1, Math.max(0, Number(params.get("slide")) || 0));
   var stage = document.getElementById("slide-stage");
   var list = document.getElementById("slide-list");
@@ -37,14 +38,14 @@
   whiteboardOpenButton.innerHTML = "&#9998; <span>Whiteboard</span>";
   document.querySelector(".class-tools").insertBefore(whiteboardOpenButton, document.querySelector(".class-tools").firstChild);
 
-  document.title = lesson.title + " · Link It! 2";
+  document.title = lesson.title + " | Link It! 2";
   document.getElementById("lesson-label").textContent = "Class " + String(lesson.id).padStart(2, "0");
   document.getElementById("lesson-date").textContent = lesson.date;
   document.getElementById("page-range").textContent = lesson.pages.replace("Student Book", "SB");
 
   function teacherMarkup(teacher) {
     return '<section class="teacher-section"><small>PURPOSE</small><p>' + teacher.purpose + '</p></section>' +
-      '<section class="teacher-section"><small>TEACHER SAYS</small><p>“' + teacher.say + '”</p></section>' +
+      '<section class="teacher-section"><small>TEACHER SAYS</small><p>&ldquo;' + teacher.say + '&rdquo;</p></section>' +
       '<section class="teacher-section"><small>FACILITATION NOTES</small><ul>' + teacher.notes.map(function (note) { return "<li>" + note + "</li>"; }).join("") + '</ul></section>' +
       '<section class="teacher-section"><small>ANSWER / SUCCESS EVIDENCE</small><div class="teacher-answer">' + teacher.answer + '</div></section>';
   }
@@ -65,14 +66,27 @@
           quiz.querySelectorAll("[data-choice]").forEach(function (option) { option.classList.remove("correct", "wrong"); });
           if (button.getAttribute("data-choice") === answer) {
             button.classList.add("correct");
-            feedback.textContent = "Correct — explain the evidence to a partner.";
+            feedback.textContent = "Correct - explain the evidence to a partner.";
           } else {
             button.classList.add("wrong");
-            feedback.textContent = "Not yet — look for the subject, time signal or context.";
+            feedback.textContent = "Not yet - look for the subject, time signal or context.";
           }
         });
       });
     });
+    stage.querySelectorAll("[data-checkpoint]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var route = button.getAttribute("data-checkpoint");
+        var feedback = stage.querySelector(".checkpoint-feedback");
+        stage.querySelectorAll("[data-checkpoint]").forEach(function (option) { option.classList.toggle("active", option === button); });
+        feedback.textContent = button.getAttribute("data-guidance");
+        feedback.setAttribute("data-route", route);
+        localStorage.setItem("linkit2-checkpoint-" + lesson.id + "-" + current, route);
+      });
+    });
+    var savedRoute = localStorage.getItem("linkit2-checkpoint-" + lesson.id + "-" + current);
+    var savedButton = savedRoute && stage.querySelector("[data-checkpoint=" + savedRoute + "]");
+    if (savedButton) savedButton.click();
   }
 
   function updateUrl() {
@@ -82,6 +96,8 @@
   function render() {
     var slide = lesson.slides[current];
     var theme = lesson.color === "coral" && (current === 0 || current === lesson.slides.length - 1) ? "coral-slide" : (current === 0 ? "dark-slide" : "");
+    if (slide.kind === "book") theme = "book-slide";
+    if (slide.kind === "checkpoint") theme = "checkpoint-slide";
     stage.className = "slide-stage " + theme;
     stage.innerHTML = '<div class="slide-kicker"><span>' + slide.kicker + '</span><span class="slide-time">' + slide.time + '</span></div>' +
       (current === 0 ? "<h1>" : "<h2>") + slide.title + (current === 0 ? "</h1>" : "</h2>") +
