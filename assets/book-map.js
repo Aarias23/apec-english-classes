@@ -4,17 +4,18 @@
     unit2: {
       title: "On Vacation", studentBook: "22-33", workbook: "W8-W13",
       stops: [
-        { page: "22-23", focus: "Vacation context and past be", audio: "Tracks 016-017" },
-        { page: "24", focus: "Physical appearance", workbook: "W8" },
-        { page: "25", focus: "Was / were and past-time expressions", workbook: "W8-W9" },
-        { page: "26", focus: "Appearance vs. personality", audio: "Tracks 019-020" },
-        { page: "27", focus: "Listening for person clues", audio: "Track 021" },
-        { page: "28", focus: "Past questions and had", workbook: "W12-W13" },
-        { page: "29", focus: "Vacation interview", audio: "Tracks 022-024" },
-        { page: "30", focus: "Vacation advertisement", audio: "Track 025" },
-        { page: "31", focus: "Vacation review", workbook: "W13" },
-        { page: "32", focus: "Well-being and healthy responses" },
-        { page: "33", focus: "Progress and reflection" }
+        { page: "22-23", focus: "Vacation context and past be", audio: "Tracks 016-017", images: ["assets/book/unit2/unit2-page-022.png", "assets/book/unit2/unit2-page-023.png"] },
+        { page: "24", image: "assets/book/unit2/unit2-page-024.png", focus: "Physical appearance", workbook: "W8" },
+        { page: "25", image: "assets/book/unit2/unit2-page-025.png", focus: "Was / were and past-time expressions", workbook: "W8-W9" },
+        { page: "26", image: "assets/book/unit2/unit2-page-026.png", focus: "Appearance vs. personality", audio: "Tracks 019-020" },
+        { page: "27", image: "assets/book/unit2/unit2-page-027.png", focus: "Listening for person clues", audio: "Track 021" },
+        { page: "28", image: "assets/book/unit2/unit2-page-028.png", focus: "Past questions and had", workbook: "W12-W13" },
+        { page: "29", image: "assets/book/unit2/unit2-page-029.png", focus: "Vacation interview", audio: "Tracks 022-024" },
+        { page: "30", image: "assets/book/unit2/unit2-page-030.png", focus: "Vacation advertisement", audio: "Track 025" },
+        { page: "31", image: "assets/book/unit2/unit2-page-031.png", focus: "Vacation review", workbook: "W13" },
+        { page: "32", image: "assets/book/unit2/unit2-page-032.png", focus: "Well-being and healthy responses" },
+        { page: "33", image: "assets/book/unit2/unit2-page-033.png", focus: "Progress and reflection" },
+        { page: "34-35", focus: "Extra practice and communication", audio: "Tracks 026-029 + VideoLink", images: ["assets/book/unit2/unit2-page-034.png", "assets/book/unit2/unit2-page-035.png"] }
       ]
     },
     unit3: {

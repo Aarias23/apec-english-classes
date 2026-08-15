@@ -12,7 +12,13 @@
   }
   function pageViewer(image, label) {
     if (!image) return "";
-    return '<figure class="book-page-viewer"><img src="' + esc(image) + '" alt="' + esc(label) + '" loading="lazy"><figcaption><span>' + esc(label) + '</span><a href="' + esc(image) + '" target="_blank" rel="noopener">Open full page</a></figcaption></figure>';
+    var images = Array.isArray(image) ? image : [image];
+    var labels = Array.isArray(label) ? label : images.map(function (_, index) {
+      return images.length > 1 ? label + " (" + (index + 1) + ")" : label;
+    });
+    return '<div class="book-page-gallery' + (images.length > 1 ? ' multiple-pages' : '') + '">' + images.map(function (item, index) {
+      return '<figure class="book-page-viewer"><img src="' + esc(item) + '" alt="' + esc(labels[index] || label) + '" loading="lazy"><figcaption><span>' + esc(labels[index] || label) + '</span><a href="' + esc(item) + '" target="_blank" rel="noopener">Open full page</a></figcaption></figure>';
+    }).join("") + '</div>';
   }
   function exerciseList(exercises) {
     return '<div class="exercise-grid">' + exercises.map(function (exercise) {

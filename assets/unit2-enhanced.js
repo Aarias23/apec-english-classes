@@ -21,9 +21,15 @@
     });
   }
   function book(config) {
+    var pageImages = config.images || config.page.split("-").map(function (pageNumber) {
+      return "assets/book/unit2/unit2-page-" + String(Number(pageNumber)).padStart(3, "0") + ".png";
+    });
+    var pageLabels = config.page.split("-").map(function (pageNumber) { return "Student Book page " + pageNumber; });
     return C.bookStop({
       title: config.title, time: config.time, lead: config.lead,
       source: source(config.page, config.refs, config.audio, config.workbook),
+      image: pageImages,
+      imageLabel: pageLabels,
       exercises: config.exercises, noBook: config.noBook,
       teacher: teacher(config.purpose, config.say, config.notes, config.answer)
     });
@@ -166,11 +172,11 @@
   var lesson4 = lessons.find(function (item) { return item.id === 4; });
   if (lesson4) {
     lesson4.unit = "Unit 2 - On Vacation";
-    lesson4.pages = "Student Book 28-33";
+    lesson4.pages = "Student Book 28-33 + Extra 34-35";
     lesson4.title = "A vacation worth reviewing";
     lesson4.subtitle = "Past questions, listening, reading and review writing";
     lesson4.product = "Interview a traveler and write an evidence-based vacation review.";
-    lesson4.bookStops = 6;
+    lesson4.bookStops = 7;
     lesson4.checkpoints = 3;
     lesson4.slides = [
       start({
@@ -288,14 +294,28 @@
         purpose: "Make progress visible and actionable.", say: "Your next target should name a skill, not simply say grammar.",
         notes: ["Use results to assign Workbook W8-W13 selectively.", "Do not grade self-reflection for accuracy."], answer: "Completed practice plus a specific Can do target."
       }),
+      book({
+        title: "Extend Unit 2 practice", time: "222-232 MIN", page: "34-35", refs: "Extra practice 1-7 + Extra communication 1-5", audio: "Tracks 026-029 + VideoLink",
+        lead: "Choose the practice that responds to today's evidence; the full pages remain available for projection.",
+        exercises: [
+          { label: "34.1-3", task: "<strong>Vocabulary.</strong> Complete the weather descriptions, find the odd word and complete the physical-appearance charts." },
+          { label: "34.4-5", task: "<strong>Time.</strong> Sort time expressions, then identify present habit, present action, past state/action or future plan." },
+          { label: "34.6-7", task: "<strong>Grammar.</strong> Complete the verb forms and write six sentences using the time expressions." },
+          { label: "35.1", task: "<strong>Communication.</strong> Complete the dialogues with the phrase box; listen, check and practice." },
+          { label: "35.2-4", task: "<strong>Pronunciation.</strong> Mark stress, distinguish pronunciations and count syllables." },
+          { label: "35.5", task: "<strong>VideoLink.</strong> Watch/listen and choose the correct answers about the people." }
+        ],
+        purpose: "Provide differentiated consolidation after the Unit 2 progress check.", say: "Do the task your evidence says you need, not every task at the same speed.",
+        notes: ["Assign one vocabulary or grammar route plus one communication route.", "Open either page full-screen when checking answers."], answer: "Students complete a targeted practice route and explain why it matches their need."
+      }),
       C.standard({
-        title: "Traveler interview + review", kicker: "FINAL PERFORMANCE &middot; INTEGRATE", time: "222-236 MIN",
+        title: "Traveler interview + review", kicker: "FINAL PERFORMANCE &middot; INTEGRATE", time: "232-238 MIN",
         lead: "Use questions to collect evidence, then turn evidence into a recommendation.",
         body: '<div class="goal-grid"><div><span>1</span><h3>Interview</h3><p>Ask four connected past questions and record keywords.</p></div><div><span>2</span><h3>Review</h3><p>Write a concise opening, two past details, an opinion and recommendation.</p></div><div><span>3</span><h3>Verify</h3><p>Underline two correct past forms and circle the evidence for your opinion.</p></div></div>',
         teacher: teacher("Collect the final integrated Unit 2 evidence.", "Questions collect the story; evidence makes the review trustworthy.", ["Use a short oral rotation.", "Collect or photograph reviews."], "Question chain + coherent evidence-based review.")
       }),
       C.standard({
-        title: "Exit route", kicker: "REFLECT &middot; UNIT 2 COMPLETE", time: "236-240 MIN",
+        title: "Exit route", kicker: "REFLECT &middot; UNIT 2 COMPLETE", time: "238-240 MIN",
         lead: "Name what you can now do and what needs practice.",
         body: '<div class="exit-grid"><div><span>Q</span><p>Write one accurate past question.</p></div><div><span>E</span><p>Write one fact + opinion connection.</p></div><div><span>N</span><p>Name one specific next target.</p></div></div><div class="prompt-box"><strong>Selective practice:</strong> Workbook W8-W13 according to your checkpoint evidence.</div>',
         teacher: teacher("Close Unit 2 with actionable evidence.", "Progress is knowing both what works and what to practice next.", ["Record common needs.", "Preview Unit 3: Places."], "One question, one evidence statement and one specific target.")

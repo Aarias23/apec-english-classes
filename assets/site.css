@@ -543,3 +543,10 @@ footer { display: flex; justify-content: space-between; padding: 28px clamp(22px
   .book-page-viewer img { max-height:390px; }
   .source-bar { gap:4px; }
 }
+
+/* Multi-page Student Book preview */
+.book-page-gallery { display:grid; gap:12px; min-width:0; }
+.book-page-gallery.multiple-pages { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media (max-width:600px) {
+  .book-page-gallery.multiple-pages { grid-template-columns:1fr; }
+}
