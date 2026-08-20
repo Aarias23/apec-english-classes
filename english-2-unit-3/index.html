@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A four-hour interactive English class about travel, transportation, clothing, and the simple past.">
+  <meta name="theme-color" content="#152c3b">
+  <title>Boarding Stories | English 2 · Unit 3</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#lesson-stage">Skip to lesson</a>
+  <header class="topbar">
+    <button class="brand" id="home-button" type="button" aria-label="Go to the first activity">
+      <span class="brand-mark">BS</span>
+      <span class="brand-copy"><strong>Boarding Stories</strong><small>English 2 · Unit 3</small></span>
+    </button>
+    <div class="flight-status" aria-label="Class progress">
+      <span class="status-light"></span><strong id="phase-label">Boarding</strong>
+      <span class="divider"></span><span id="elapsed-label">0 / 240 min</span>
+    </div>
+    <div class="top-actions">
+      <button class="tool-button" id="timer-button" type="button"><span aria-hidden="true">◷</span><span>Timer</span></button>
+      <button class="tool-button" id="teacher-button" type="button" aria-pressed="false"><span aria-hidden="true">✦</span><span>Teacher notes</span></button>
+      <button class="tool-button" id="fullscreen-button" type="button"><span aria-hidden="true">⛶</span><span>Present</span></button>
+    </div>
+  </header>
+
+  <main class="classroom-shell">
+    <aside class="route-rail" id="route-rail" aria-label="Lesson route">
+      <div class="rail-head"><span>DEPARTURE BOARD</span><button id="rail-toggle" type="button" aria-label="Collapse lesson route" aria-expanded="true">‹</button></div>
+      <nav id="lesson-nav"></nav>
+      <div class="route-total"><strong>240</strong><span>active minutes</span></div>
+    </aside>
+    <section class="stage-shell">
+      <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+      <article id="lesson-stage" class="lesson-stage" tabindex="-1" aria-live="polite"></article>
+      <footer class="stage-controls">
+        <button class="nav-button" id="prev-button" type="button">← <span>Previous</span></button>
+        <div class="stage-status"><span id="stage-counter">01 / 14</span><button id="complete-button" class="complete-button" type="button" aria-pressed="false">○ Mark complete</button></div>
+        <button class="nav-button next" id="next-button" type="button"><span>Next</span> →</button>
+      </footer>
+    </section>
+  </main>
+
+  <aside class="teacher-drawer" id="teacher-drawer" aria-hidden="true">
+    <header><div><small>PRIVATE TEACHER VIEW</small><h2>Flight plan</h2></div><button id="teacher-close" type="button" aria-label="Close teacher notes">×</button></header>
+    <div id="teacher-content" class="teacher-content"></div>
+  </aside>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close teacher notes" tabindex="-1"></button>
+
+  <dialog class="timer-dialog" id="timer-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="Close timer">×</button></form>
+    <p class="eyebrow">CLASSROOM TIMER</p><div class="timer-display" id="timer-display" aria-live="polite">05:00</div>
+    <div class="timer-presets"><button type="button" data-minutes="2">2 min</button><button type="button" data-minutes="5" class="active">5 min</button><button type="button" data-minutes="10">10 min</button><button type="button" data-minutes="15">15 min</button></div>
+    <div class="timer-actions"><button type="button" id="timer-start" class="primary-button">Start</button><button type="button" id="timer-reset" class="secondary-button">Reset</button></div>
+    <p class="timer-hint">Keep this window open while students work.</p>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -20,6 +20,11 @@ if (Test-Path -LiteralPath $examSource) {
   Copy-Item -LiteralPath $examSource -Destination $clientRoot -Recurse -Force
 }
 
+$unit3Source = Join-Path $projectRoot "english-2-unit-3"
+if (Test-Path -LiteralPath $unit3Source) {
+  Copy-Item -LiteralPath $unit3Source -Destination $clientRoot -Recurse -Force
+}
+
 $siteAssets = @(
   "site.css",
   "lesson-data.js",
