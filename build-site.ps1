@@ -15,6 +15,11 @@ Copy-Item -LiteralPath (Join-Path $projectRoot "classroom.html") -Destination $c
 Copy-Item -LiteralPath (Join-Path $projectRoot "unit2-class.html") -Destination $clientRoot -Force
 Copy-Item -LiteralPath (Join-Path $projectRoot "midterm-review.html") -Destination $clientRoot -Force
 
+$examSource = Join-Path $projectRoot "exam-english2"
+if (Test-Path -LiteralPath $examSource) {
+  Copy-Item -LiteralPath $examSource -Destination $clientRoot -Recurse -Force
+}
+
 $siteAssets = @(
   "site.css",
   "lesson-data.js",
