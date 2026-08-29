@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generador aleatorio de grupos y rúbrica individual para English 2.">
+  <meta name="theme-color" content="#113d35">
+  <title>Grupos de trabajo | English 2</title>
+  <link rel="stylesheet" href="grupos.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Volver a Town to Table">
+      <span class="brand-mark">G4</span>
+      <span><strong>Grupos de trabajo</strong><small>English 2 · 20 estudiantes</small></span>
+    </a>
+    <div class="top-actions">
+      <button id="print-button" class="tool-button" type="button">Imprimir resultados</button>
+      <a class="tool-button dark" href="index.html">Volver a la clase</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">RANDOM GROUP STUDIO</p>
+        <h1>Cinco equipos.<br><em>Dos misiones.</em></h1>
+        <p>Organiza aleatoriamente 20 estudiantes en grupos de cuatro. Solo dos grupos reciben un tema; los otros tres quedan sin tema asignado.</p>
+        <div class="summary-row" aria-label="Resumen de la actividad">
+          <div><strong>20</strong><span>estudiantes</span></div>
+          <div><strong>5 × 4</strong><span>grupos</span></div>
+          <div><strong>2</strong><span>temas asignados</span></div>
+          <div><strong>2.0</strong><span>puntos por estudiante</span></div>
+        </div>
+      </div>
+      <aside class="action-card">
+        <span class="step-label">PASO 1</span>
+        <h2>Crear los grupos</h2>
+        <p>Cada generación mezcla los estudiantes y elige al azar los dos grupos que recibirán las misiones.</p>
+        <button id="generate-button" class="primary-button" type="button">Generar grupos aleatorios</button>
+        <button id="topics-button" class="secondary-button" type="button" disabled>Reasignar solo los temas</button>
+        <p id="generation-status" class="status" aria-live="polite">La lista está lista para organizarse.</p>
+      </aside>
+    </section>
+
+    <section class="topic-section" aria-labelledby="topic-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">DOS TEMAS · DOS GRUPOS</p><h2 id="topic-heading">Misiones de trabajo</h2></div>
+        <p>Los temas proceden directamente de las experiencias de aprendizaje de <code>english-02</code> y <code>english-2</code>.</p>
+      </div>
+      <div class="topic-grid">
+        <article class="topic-card topic-a">
+          <span class="topic-source">TEMA A · ENGLISH-02</span>
+          <h3>Town-to-Table Healthy Shopping</h3>
+          <p>Plan a healthy meal, decide what food and quantities you need, and create a shopping conversation around town.</p>
+          <div class="requirements"><span>places around town</span><span>healthy food</span><span>some / any</span><span>much / many</span></div>
+          <details><summary>Ver producto esperado</summary><p>Presentación oral de 3–4 minutos con una lista de compras, cantidades, lugares que visitarán y participación visible de los cuatro integrantes.</p></details>
+        </article>
+        <article class="topic-card topic-b">
+          <span class="topic-source">TEMA B · ENGLISH-2</span>
+          <h3>Our Everyday World</h3>
+          <p>Create one connected portrait of a fictional family: people, routines, neighborhood places, and a weekly schedule.</p>
+          <div class="requirements"><span>family</span><span>daily routines</span><span>there is / are</span><span>time & schedule</span></div>
+          <details><summary>Ver producto esperado</summary><p>Presentación oral de 3–4 minutos con apoyo visual, conectores sencillos y una parte claramente identificable para cada integrante.</p></details>
+        </article>
+      </div>
+    </section>
+
+    <section class="groups-section" aria-labelledby="groups-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">PASO 2 · RESULTADO</p><h2 id="groups-heading">Grupos generados</h2></div>
+        <p>La composición y las calificaciones se guardan automáticamente en este dispositivo.</p>
+      </div>
+      <div id="empty-state" class="empty-state">
+        <span>↗</span><h3>Aún no hay grupos</h3><p>Usa el botón “Generar grupos aleatorios” para comenzar.</p>
+      </div>
+      <div id="groups-grid" class="groups-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="rubric-section" aria-labelledby="rubric-heading">
+      <div class="section-heading light">
+        <div><p class="eyebrow">PASO 3 · EVALUACIÓN INDIVIDUAL</p><h2 id="rubric-heading">Rúbrica · 2.0 puntos</h2></div>
+        <button id="reset-scores" class="light-button" type="button">Limpiar calificaciones</button>
+      </div>
+      <div class="score-legend">
+        <span><b>0.50</b> evidencia clara y constante</span>
+        <span><b>0.25</b> evidencia parcial o con apoyo</span>
+        <span><b>0.00</b> todavía no evidenciado</span>
+      </div>
+      <div class="rubric-summary">
+        <article><strong>01</strong><div><h3>Participación activa</h3><p>Aporta ideas, cumple su función y se mantiene involucrado.</p></div><b>0.50</b></article>
+        <article><strong>02</strong><div><h3>Uso del inglés objetivo</h3><p>Utiliza vocabulario y estructuras del tema asignado.</p></div><b>0.50</b></article>
+        <article><strong>03</strong><div><h3>Colaboración</h3><p>Escucha, respeta turnos y ayuda al equipo a avanzar.</p></div><b>0.50</b></article>
+        <article><strong>04</strong><div><h3>Contribución oral</h3><p>Explica una parte identificable del producto con claridad.</p></div><b>0.50</b></article>
+      </div>
+      <div id="rubric-groups" class="rubric-groups"></div>
+    </section>
+  </main>
+
+  <footer><span>English 2 · Group Work Studio</span><span>Evaluación individual · Máximo 2.0 puntos</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="grupos.js"></script>
+</body>
+</html>

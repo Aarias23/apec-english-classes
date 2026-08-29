@@ -4,7 +4,7 @@
   if (!container || !window.COURSE_LESSONS) return;
   function isComplete(id) { return localStorage.getItem("linkit2-lesson-" + id) === "complete"; }
   container.innerHTML = window.COURSE_LESSONS.map(function (lesson) {
-    var unitClass = lesson.id <= 2 ? " unit-one" : (lesson.id <= 4 ? " unit-two" : " unit-three");
+    var unitClass = lesson.id <= 2 ? " unit-one" : (lesson.id <= 4 ? " unit-two" : (lesson.id <= 6 ? " unit-three" : " unit-four"));
     var complete = isComplete(lesson.id) ? " completed" : "";
     var dateBits = lesson.shortDate.split(" ");
     var badges = "";

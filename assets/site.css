@@ -491,7 +491,7 @@ footer { display: flex; justify-content: space-between; padding: 28px clamp(22px
 }
 
 /* Book-linked learning route */
-.unit-jump { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 0 28px; }
+.unit-jump { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:0 0 28px; }
 .unit-jump a { display:flex; justify-content:space-between; gap:14px; padding:15px 18px; border:1px solid var(--line); border-radius:14px; background:white; color:var(--ink); text-decoration:none; }
 .unit-jump a:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(23,63,53,.08); }
 .unit-jump strong { font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; }
@@ -503,6 +503,9 @@ footer { display: flex; justify-content: space-between; padding: 28px clamp(22px
 .route-badges span { padding:5px 8px; border-radius:999px; background:#e7efea; color:#315e54; font-size:.61rem; font-weight:850; letter-spacing:.06em; text-transform:uppercase; }
 .unit-two .route-badges span { background:#ffe2d7; color:#8b3f2f; }
 .unit-three .route-badges span { background:#d5f2e8; color:#11655d; }
+.lesson-card.unit-four { background:#fff5fa; }
+.unit-four .date-medallion { background:#b42368; }
+.unit-four .route-badges span { background:#fce1ee; color:#9d174d; }
 
 .slide-stage.book-slide { background:#f9fcfa; }
 .slide-stage.checkpoint-slide { background:#f1f7ff; }

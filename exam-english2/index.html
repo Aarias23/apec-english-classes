@@ -12,90 +12,26 @@
 <body>
   <a class="skip-link" href="#mainContent">Skip to exam</a>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="English 2 mid-term home">
-      <span class="brand-mark">E2</span>
-      <span><strong>English 2</strong><small>Mid-Term Evaluation</small></span>
-    </a>
-    <div class="top-actions">
-      <button class="icon-button" id="answerKeyButton" type="button"><span aria-hidden="true">◎</span> Answer key</button>
-      <button class="icon-button" id="fullscreenButton" type="button"><span aria-hidden="true">⛶</span> Present</button>
-    </div>
+    <a class="brand" href="./" aria-label="English 2 mid-term home"><span class="brand-mark">E2</span><span><strong>English 2</strong><small>Mid-Term Evaluation</small></span></a>
+    <div class="top-actions"><button class="icon-button" id="answerKeyButton" type="button"><span aria-hidden="true">◎</span> Answer key</button><button class="icon-button" id="fullscreenButton" type="button"><span aria-hidden="true">⛶</span> Present</button></div>
   </header>
-
   <main id="mainContent" class="shell">
     <section class="welcome" id="welcomeView">
-      <div class="welcome-copy">
-        <p class="eyebrow">ENGLISH 2 · MID-TERM · 30 QUESTIONS</p>
-        <h1>Your everyday world,<br><em>from home to town.</em></h1>
-        <p class="lead">A cumulative evaluation of family, routines, places, schedules, personal information, food, and quantity language.</p>
-        <div class="welcome-actions">
-          <button class="primary-button" id="startExam" type="button">Start exam <span aria-hidden="true">→</span></button>
-          <span>Answer in Blackboard</span>
-        </div>
-      </div>
-      <aside class="exam-ticket" aria-label="Exam overview">
-        <div class="ticket-head"><span>MID-TERM / 01</span><span>ENGLISH 2</span></div>
-        <div class="ticket-score"><strong>30</strong><span>questions</span></div>
-        <div class="ticket-route">
-          <span><b>01</b> Everyday English</span>
-          <span><b>02</b> Town to Table</span>
-          <span><b>03</b> Integrated use</span>
-        </div>
-        <p>Multiple choice · True / False · Fill in the blank · Matching</p>
-      </aside>
+      <div class="welcome-copy"><p class="eyebrow">ENGLISH 2 · MID-TERM · 25 QUESTIONS</p><h1>Your everyday world,<br><em>from home to town.</em></h1><p class="lead">A cumulative evaluation of family, routines, places, personal information, food, and quantity language.</p><div class="welcome-actions"><button class="primary-button" id="startExam" type="button">Start exam <span aria-hidden="true">→</span></button><span>Answer in Blackboard</span></div></div>
+      <aside class="exam-ticket" aria-label="Exam overview"><div class="ticket-head"><span>MID-TERM / 01</span><span>ENGLISH 2</span></div><div class="ticket-score"><strong>25</strong><span>questions</span></div><div class="ticket-route"><span><b>01</b> Everyday English</span><span><b>02</b> Town to Table</span><span><b>03</b> Integrated use</span></div><p>Multiple choice · True / False · Fill in the blank · Matching</p></aside>
     </section>
-
     <section class="workspace" id="examWorkspace" hidden>
-      <header class="exam-header">
-        <div>
-          <button class="text-button" id="backButton" type="button">← Exam overview</button>
-          <p class="eyebrow" id="sectionLabel">SECTION 1 · EVERYDAY ENGLISH</p>
-          <h1>English 2 Mid-Term</h1>
-        </div>
-        <div class="exam-status">
-          <span id="slideIndicator">Question 1 of 30</span>
-          <strong id="timerDisplay" aria-live="polite">01:00</strong>
-        </div>
-      </header>
+      <header class="exam-header"><div><button class="text-button" id="backButton" type="button">← Exam overview</button><p class="eyebrow" id="sectionLabel">SECTION 1 · EVERYDAY ENGLISH</p><h1>English 2 Mid-Term</h1></div><div class="exam-status"><span id="slideIndicator">Question 1 of 25</span><strong id="timerDisplay" aria-live="polite">01:00</strong></div></header>
       <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
       <section class="exam-slide" id="examSlide" aria-live="polite">
-        <div class="exam-type-row">
-          <span class="type-badge" id="questionType">Multiple Choice</span>
-          <div class="option-tools">
-            <span>Answer in Blackboard</span>
-            <button class="visibility-button" id="toggleOptions" type="button" aria-controls="questionContent" aria-expanded="true">Hide options</button>
-          </div>
-        </div>
-        <div class="question-body">
-          <p class="question-label" id="questionLabel">Question 1</p>
-          <h2 id="questionText">Loading…</h2>
-          <div id="questionContent"></div>
-        </div>
-        <footer class="exam-controls">
-          <button class="secondary-button" id="prevQuestion" type="button">← Previous</button>
-          <div class="timer-controls" aria-label="Timer controls">
-            <button class="control-button" id="startTimer" type="button">▶ Start</button>
-            <button class="control-button" id="pauseTimer" type="button">Ⅱ Pause</button>
-            <button class="control-button" id="resetTimer" type="button">↻ Reset</button>
-            <select id="timerLength" aria-label="Time per question">
-              <option value="60">60 sec</option><option value="90">90 sec</option><option value="120">120 sec</option>
-            </select>
-          </div>
-          <button class="primary-button" id="nextQuestion" type="button">Next →</button>
-        </footer>
+        <div class="exam-type-row"><span class="type-badge" id="questionType">Multiple Choice</span><div class="option-tools"><span>Answer in Blackboard</span><button class="visibility-button" id="toggleOptions" type="button" aria-controls="questionContent" aria-expanded="true">Hide options</button></div></div>
+        <div class="question-body"><p class="question-label" id="questionLabel">Question 1</p><h2 id="questionText">Loading…</h2><div id="questionContent"></div></div>
+        <footer class="exam-controls"><button class="secondary-button" id="prevQuestion" type="button">← Previous</button><div class="timer-controls" aria-label="Timer controls"><button class="control-button" id="startTimer" type="button">▶ Start</button><button class="control-button" id="pauseTimer" type="button">Ⅱ Pause</button><button class="control-button" id="resetTimer" type="button">↻ Reset</button><select id="timerLength" aria-label="Time per question"><option value="60">60 sec</option><option value="90">90 sec</option><option value="120">120 sec</option></select></div><button class="primary-button" id="nextQuestion" type="button">Next →</button></footer>
       </section>
       <nav class="question-map" id="questionMap" aria-label="Jump to a question"></nav>
     </section>
   </main>
-
-  <dialog class="answer-dialog" id="answerDialog">
-    <div class="dialog-head">
-      <div><p class="eyebrow">PRIVATE TEACHER VIEW</p><h2>Answer key</h2></div>
-      <button id="closeAnswers" type="button" aria-label="Close answer key">×</button>
-    </div>
-    <p class="dialog-note">Keep this window off the projected screen.</p>
-    <div class="answer-grid" id="answerGrid"></div>
-  </dialog>
+  <dialog class="answer-dialog" id="answerDialog"><div class="dialog-head"><div><p class="eyebrow">PRIVATE TEACHER VIEW</p><h2>Answer key</h2></div><button id="closeAnswers" type="button" aria-label="Close answer key">×</button></div><p class="dialog-note">Keep this window off the projected screen.</p><div class="answer-grid" id="answerGrid"></div></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="exam.js"></script>
 </body>
